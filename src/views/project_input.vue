@@ -1,7 +1,5 @@
 <template>
-  <div class="xiangmuluru">
-    <h3 class="h3">项目录入</h3>
-
+  <div class="project-input">
     <el-form
       :model="ruleForm"
       :rules="rules"
@@ -95,6 +93,7 @@
       >
         <el-input
           type="textarea"
+          :rows="5"
           v-model="ruleForm.project_addr"
         ></el-input>
       </el-form-item>
@@ -140,6 +139,7 @@
       >
         <el-input
           type="textarea"
+          :rows="5"
           v-model="ruleForm.talk_content"
         ></el-input>
       </el-form-item>
@@ -219,3 +219,16 @@ export default {
   }
 };
 </script>
+<style lang="scss" scoped>
+.project-input {
+  padding-bottom: 300px;
+  /deep/ .el-form-item__content {
+    > div {
+      width: 100%;
+    }
+  }
+  /deep/.el-form-item__label {
+    color: #00bf8b;
+  }
+}
+</style>
