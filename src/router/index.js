@@ -13,18 +13,16 @@ Vue.use(VueRouter)
   {
     path: '/project_input',
     name: 'xiang_mu_lu_ru',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/project_input.vue')
   },
   {
-    path: '/',
-    name: 'xiang_mu_lu_ru',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: '/scenic_input',
+    name: 'scenic_input',
     component: () => import(/* webpackChunkName: "about" */ '../views/scenic_input.vue')
+  },  {
+    path: '/merchant_input',
+    name: 'merchant_input',
+    component: () => import(/* webpackChunkName: "about" */ '../views/merchant_input.vue')
   }
 ]
 
