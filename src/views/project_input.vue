@@ -153,6 +153,7 @@
   </div>
 </template>
 <script>
+import axios from "axios"
 export default {
   data() {
     return {
@@ -208,8 +209,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          console.log(this.$refs[formName].model);
-          alert("submit!");
+          axios.post()
         } else {
           console.log("error submit!!");
           return false;
