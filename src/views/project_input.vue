@@ -10,29 +10,29 @@
     >
       <el-form-item
         label="客户名称"
-        prop="user_name"
+        prop="customer_name"
       >
-        <el-input v-model="ruleForm.user_name"></el-input>
+        <el-input v-model="ruleForm.customer_name"></el-input>
       </el-form-item>
       <el-form-item
         label="电话号码"
-        prop="user_phone"
+        prop="customer_phone"
       >
-        <el-input v-model="ruleForm.user_phone"></el-input>
+        <el-input v-model="ruleForm.customer_phone"></el-input>
       </el-form-item>
       <el-form-item
         label="微信号"
-        prop="user_wechart"
+        prop="customer_wechat"
       >
-        <el-input v-model="ruleForm.user_wechart"></el-input>
+        <el-input v-model="ruleForm.customer_wechat"></el-input>
       </el-form-item>
       <el-form-item
         label="客户来源"
-        prop="user_origin"
+        prop="customer_origin"
       >
-        <el-select v-model="ruleForm.user_origin">
+        <el-select v-model="ruleForm.customer_origin">
           <el-option
-            v-for="(item,index) in user_origins"
+            v-for="(item,index) in customer_origins"
             :key="index"
             :label="item"
             :value="item"
@@ -47,18 +47,18 @@
       </el-form-item>
       <el-form-item
         label="客户行业"
-        prop="user_work"
+        prop="customer_perfession"
       >
-        <el-input v-model="ruleForm.user_work"></el-input>
+        <el-input v-model="ruleForm.customer_perfession"></el-input>
       </el-form-item>
 
       <el-form-item
         label="客户类别"
-        prop="user_type"
+        prop="customer_type"
       >
-        <el-select v-model="ruleForm.user_type">
+        <el-select v-model="ruleForm.customer_type">
           <el-option
-            v-for="(item,index) in user_types"
+            v-for="(item,index) in customer_type"
             :key="index"
             :label="item"
             :value="item"
@@ -121,11 +121,11 @@
 
       <el-form-item
         label="客户等级"
-        prop="user_level"
+        prop="customer_level"
       >
-        <el-select v-model="ruleForm.user_level">
+        <el-select v-model="ruleForm.customer_level">
           <el-option
-            v-for="(item,index) in user_levels"
+            v-for="(item,index) in customer_levels"
             :key="index"
             :label="item"
             :value="item"
@@ -135,12 +135,12 @@
 
       <el-form-item
         label="初次沟通内容"
-        prop="talk_content"
+        prop="init_comment"
       >
         <el-input
           type="textarea"
           :rows="5"
-          v-model="ruleForm.talk_content"
+          v-model="ruleForm.init_comment"
         ></el-input>
       </el-form-item>
 
@@ -175,7 +175,7 @@ export default {
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
       },
-      user_origins: [
+      customer_origins: [
         "朋友介绍",
         "网络推广",
         "客户推荐",
@@ -183,7 +183,7 @@ export default {
         "自行开发"
       ],
       project_types: ["文化旅游", "视觉工程", "数字展馆", "舞美娱乐", "其它"],
-      user_types: [
+      customer_type: [
         "甲方单位",
         "总包",
         "分包",
@@ -201,7 +201,7 @@ export default {
         "合同审核",
         "签约履约"
       ],
-      user_levels: ["一", "二", "三", "四", "五"]
+      customer_levels: ["一", "二", "三", "四", "五"]
     };
   },
   methods: {
