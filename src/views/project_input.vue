@@ -157,20 +157,20 @@ export default {
   data() {
     return {
       ruleForm: {
-        user_name: "",
-        user_phone: "",
-        user_wechart: "",
-        user_origin: "",
+        customer_name: "",
+        customer_phone: "",
+        customer_wechat: "",
+        customer_origin: "",
         company_name: "",
-        user_work: "",
-        user_types: "",
-        project_types: "",
-        need_product: "",
+        customer_perfession: "",
+        customer_type: "",
+        project_type: "",
+        need_project: "",
         project_addr: "",
         project_name: "",
         project_state: "",
-        user_levels: "",
-        talk_content: ""
+        customer_level: "",
+        init_comment: ""
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
