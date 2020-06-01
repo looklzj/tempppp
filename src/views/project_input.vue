@@ -153,7 +153,7 @@
   </div>
 </template>
 <script>
-import axios from "axios"
+import axios from "axios";
 export default {
   data() {
     return {
@@ -166,7 +166,7 @@ export default {
         customer_perfession: "",
         customer_type: "",
         project_type: "",
-        need_project: "",
+        need_product: "",
         project_addr: "",
         project_name: "",
         project_state: "",
@@ -209,7 +209,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.post()
+          axios
+            .post("http://localhost:9080/v1/project", this.ruleForm)
+            .then(res => {
+              if (res.data.code == 400) {
+                alert(res.data.data);
+              }
+              if (res.data.code == 200) {
+                alert("添加成功");
+                window.location.reload(true);
+              }
+            });
         } else {
           console.log("error submit!!");
           return false;
