@@ -92,9 +92,7 @@
         label="产品名称"
         prop="product_name"
       >
-        <el-input
-          v-model="ruleForm.product_name"
-        ></el-input>
+        <el-input v-model="ruleForm.product_name"></el-input>
       </el-form-item>
 
       <el-form-item
@@ -121,7 +119,7 @@
         </el-select>
       </el-form-item>
 
-            <el-form-item
+      <el-form-item
         label="商户评级"
         prop="merchant_level"
       >
@@ -139,9 +137,7 @@
         label="店铺地址"
         prop="merchant_addr"
       >
-        <el-input
-          v-model="ruleForm.merchant_addr"
-        ></el-input>
+        <el-input v-model="ruleForm.merchant_addr"></el-input>
       </el-form-item>
 
       <el-form-item
@@ -194,25 +190,25 @@ export default {
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
       },
-      property_types: [
-        "室内建筑",
-        "商业街区",
-        "户外空地",
-        "可以搭建",
-        "不可搭建"
+      cooperation_modes: ["租赁", "分成", "合作投资"],
+      invest_intents: [
+        "很想发展",
+        "考察决定",
+        "只投川内",
+        "愿意共投",
+        "期待加盟"
       ],
-      cooperation_types: [
+      product_types: [
         "主题乐园",
-        "运动、户外",
-        "水上乐园",
-        "动物互动",
-        "美食小吃",
-        "旅游商品",
-        "其他"
+        "运动户外",
+        "亲子互动",
+        "美食",
+        "小吃",
+        "特产",
+        "文创产品"
       ],
-      scenic_cooperations: ["有", "无"],
-      scenic_tickets: ["有", "无"],
-      scenic_levels: ["一", "二", "三", "四", "五"]
+      operation_states: ["较差", "一般", "很好", "非常好"],
+      merchant_levels: ["一", "二", "三", "四", "五"]
     };
   },
   methods: {
