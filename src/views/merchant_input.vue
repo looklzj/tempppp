@@ -12,40 +12,40 @@
         label="店铺名称"
         prop="merchant_name"
       >
-        <el-input v-model="ruleForm.scenic_name"></el-input>
+        <el-input v-model="ruleForm.merchant_name"></el-input>
       </el-form-item>
       <el-form-item
         label="老板姓名"
         prop="boss_name"
       >
-        <el-input v-model="ruleForm.scenic_type"></el-input>
+        <el-input v-model="ruleForm.boss_name"></el-input>
       </el-form-item>
       <el-form-item
         label="联系电话"
         prop="contact_phone"
       >
-        <el-input v-model="ruleForm.scenic_type"></el-input>
+        <el-input v-model="ruleForm.contact_phone"></el-input>
       </el-form-item>
       <el-form-item
         label="微信号"
         prop="wechat"
       >
-        <el-input v-model="ruleForm.scenic_open"></el-input>
+        <el-input v-model="ruleForm.wechat"></el-input>
       </el-form-item>
       <el-form-item
         label="所在景区"
         prop="scenic_position"
       >
-        <el-input v-model="ruleForm.year_people"></el-input>
+        <el-input v-model="ruleForm.scenic_position"></el-input>
       </el-form-item>
 
       <el-form-item
         label="目前场地合作模式"
         prop="cooperation_mode"
       >
-        <el-select v-model="ruleForm.scenic_ticket">
+        <el-select v-model="ruleForm.cooperation_mode">
           <el-option
-            v-for="(item,index) in scenic_tickets"
+            v-for="(item,index) in cooperation_modes"
             :key="index"
             :label="item"
             :value="item"
@@ -55,18 +55,18 @@
 
       <el-form-item
         label="租金、分成比例"
-        prop="adult"
+        prop="rent_scale"
       >
-        <el-input v-model="ruleForm.adult_ticket"></el-input>
+        <el-input v-model="ruleForm.rent_scale"></el-input>
       </el-form-item>
 
       <el-form-item
         label="投资意向"
-        prop="scenic_cooperation"
+        prop="invest_intent"
       >
-        <el-select v-model="ruleForm.scenic_cooperation">
+        <el-select v-model="ruleForm.invest_intent">
           <el-option
-            v-for="(item,index) in scenic_cooperations"
+            v-for="(item,index) in invest_intents"
             :key="index"
             :label="item"
             :value="item"
@@ -76,11 +76,11 @@
 
       <el-form-item
         label="产品类型"
-        prop="cooperation_type"
+        prop="product_type"
       >
-        <el-select v-model="ruleForm.cooperation_type">
+        <el-select v-model="ruleForm.product_type">
           <el-option
-            v-for="(item,index) in cooperation_types"
+            v-for="(item,index) in product_types"
             :key="index"
             :label="item"
             :value="item"
@@ -90,31 +90,30 @@
 
       <el-form-item
         label="产品名称"
-        prop="property_size"
+        prop="product_name"
       >
         <el-input
-          v-model="ruleForm.property_size"
-          placeholder="公顷"
+          v-model="ruleForm.product_name"
         ></el-input>
       </el-form-item>
 
       <el-form-item
         label="人均消费"
-        prop="property_size"
+        prop="per_consump"
       >
         <el-input
-          v-model="ruleForm.property_size"
+          v-model="ruleForm.per_consump"
           placeholder="元/人"
         ></el-input>
       </el-form-item>
 
       <el-form-item
         label="经营现状"
-        prop="property_type"
+        prop="operation_state"
       >
-        <el-select v-model="ruleForm.property_type">
+        <el-select v-model="ruleForm.operation_state">
           <el-option
-            v-for="(item,index) in property_types"
+            v-for="(item,index) in operation_states"
             :key="index"
             :label="item"
             :value="item"
@@ -124,11 +123,11 @@
 
             <el-form-item
         label="商户评级"
-        prop="property_type"
+        prop="merchant_level"
       >
-        <el-select v-model="ruleForm.property_type">
+        <el-select v-model="ruleForm.merchant_level">
           <el-option
-            v-for="(item,index) in property_types"
+            v-for="(item,index) in merchant_levels"
             :key="index"
             :label="item"
             :value="item"
@@ -138,11 +137,10 @@
 
       <el-form-item
         label="店铺地址"
-        prop="property_size"
+        prop="merchant_addr"
       >
         <el-input
-          v-model="ruleForm.property_size"
-          placeholder="公顷"
+          v-model="ruleForm.merchant_addr"
         ></el-input>
       </el-form-item>
 
