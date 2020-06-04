@@ -164,28 +164,21 @@ export default {
   data() {
     return {
       ruleForm: {
-        scenic_name: "",
-        scenic_type: "",
-        scenic_level: "",
-        scenic_open: "",
-        year_people: "",
-        scenic_ticket: "",
-        adult_ticket: "",
-        child_ticket: "",
-        scenic_cooperation: "",
-        cooperation_type: "",
-        property_type: "",
-        property_size: "",
+        merchant_name: "",
+        boss_name: "",
+        contact_phone: "",
+        wechat: "",
+        scenic_position: "",
         cooperation_mode: "",
         rent_scale: "",
-
-        contact_name: "",
-        contact_work: "",
-        contact_phone: "",
-        contact_wechat: "",
-        scenic_company: "",
-        scenic_addr: "",
-        talk_content: ""
+        invest_intent: "",
+        product_type: "",
+        product_name: "",
+        per_consump: "",
+        operation_state: "",
+        merchant_level: "",
+        merchant_addr: "",
+        talk_content: "",
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
