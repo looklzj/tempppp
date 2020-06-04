@@ -142,12 +142,12 @@
 
       <el-form-item
         label="初次沟通内容"
-        prop="talk_content"
+        prop="init_comment"
       >
         <el-input
           type="textarea"
           :rows="5"
-          v-model="ruleForm.talk_content"
+          v-model="ruleForm.init_comment"
         ></el-input>
       </el-form-item>
 
@@ -178,7 +178,7 @@ export default {
         operation_state: "",
         merchant_level: "",
         merchant_addr: "",
-        talk_content: "",
+        init_comment: "",
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
