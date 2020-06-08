@@ -160,6 +160,7 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 export default {
   data() {
     return {
@@ -178,7 +179,7 @@ export default {
         operation_state: "",
         merchant_level: "",
         merchant_addr: "",
-        init_comment: "",
+        init_comment: ""
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
@@ -208,8 +209,17 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          console.log(this.$refs[formName].model);
-          alert("submit!");
+          axios
+            .post("http://localhost:9080/v1/merchant", this.ruleForm)
+            .then(res => {
+              if (res.data.code == 400) {
+                alert(res.data.data);
+              }
+              if (res.data.code == 200) {
+                alert("添加成功");
+                window.location.reload(true);
+              }
+            });
         } else {
           console.log("error submit!!");
           return false;
