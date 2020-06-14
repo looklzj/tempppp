@@ -1,30 +1,33 @@
 <template>
   <div class="login">
-    <img
-      class="logo"
-      src="../assets/images/logo/logo-big.jpg"
-    >
-    <div class="input-wrapper">
-      <input
-        type="text"
-        v-model="username"
-        placeholder="用户名"
-      />
+    <div class="login-inner">
+      <img
+        class="logo"
+        src="../assets/images/logo/logo-big.jpg"
+      >
+      <div class="input-wrapper">
+        <input
+          type="text"
+          v-model="username"
+          placeholder="用户名"
+        />
+      </div>
+      <div class="input-wrapper">
+        <input
+          type="password"
+          v-model="password"
+          placeholder="密码"
+        />
+      </div>
+      <button @click="loginHandler">登录</button>
     </div>
-    <div class="input-wrapper">
-      <input
-        type="password"
-        v-model="password"
-        placeholder="密码"
-      />
-    </div>
-    <button>登录</button>
-    <router-link>重置密码</router-link>
+
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import axios from "axios";
 import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
@@ -33,17 +36,58 @@ export default {
       username: "",
       password: ""
     };
+  },
+  methods: {
+    loginHandler() {
+      axios
+        .post("http://rechengparty.com:9080/v1/user/login", {
+          username: this.username,
+          password: this.password
+        })
+        .then(res => {
+          console.log(res);
+        });
+    }
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .login {
+  display: flex;
+  align-items: center;
+  height: 100vh;
   text-align: center;
+  background: #00bf8b;
   .logo {
     width: 80%;
   }
   input {
+    margin: 0 auto;
     display: block;
+    width: 6rem;
+    height: 1rem;
+    font-size: 0.5rem;
+    color: #fff;
+
+    border: none;
+    outline: none;
+    border-bottom: 2px solid #fff;
+    background: #00bf8b;
+    &::placeholder {
+      color: #fff;
+    }
+  }
+  button {
+    font-weight: 700;
+    font-size: 0.5rem;
+    margin-top: 50px;
+    background: #00bf8b;
+    width: 6rem;
+    height: 1rem;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 4rem;
+    outline: none;
   }
 }
 </style>
