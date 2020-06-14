@@ -38,6 +38,9 @@ export default {
       password: ""
     };
   },
+  mounted() {
+    this.$router.push("/home");
+  },
   methods: {
     loginHandler() {
       axios
@@ -53,8 +56,8 @@ export default {
               duration: 5000
             });
           }
-          if(res.data.code==200){
-            this.$router.push("/home")
+          if (res.data.code == 200) {
+            this.$router.push("/home");
           }
         });
     }
