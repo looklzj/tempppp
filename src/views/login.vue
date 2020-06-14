@@ -46,6 +46,11 @@ export default {
         })
         .then(res => {
           console.log(res);
+          this.Toast({
+            message: "提示",
+            position: "bottom",
+            duration: 5000
+          });
         });
     }
   }
