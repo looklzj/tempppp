@@ -29,7 +29,6 @@
 // @ is an alias to /src
 import axios from "axios";
 import { Toast } from "mint-ui";
-import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
   data() {

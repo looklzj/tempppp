@@ -1,9 +1,17 @@
 <template>
   <div id="app">
     <router-view />
+    <tab/>
   </div>
 </template>
-
+<script>
+import Tab from "./components/tab"
+export default {
+  components:{
+    Tab,
+  }
+}
+</script>
 <style lang="scss">
 @function pxToRem($px, $base: 16) {
   @return ($px / $base) * 1rem;
