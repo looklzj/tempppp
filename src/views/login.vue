@@ -28,6 +28,7 @@
 <script>
 // @ is an alias to /src
 import axios from "axios";
+import { Toast } from "mint-ui";
 import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
@@ -45,12 +46,16 @@ export default {
           password: this.password
         })
         .then(res => {
-          console.log(res);
-          this.Toast({
-            message: "提示",
-            position: "bottom",
-            duration: 5000
-          });
+          if (res.data.code == 400) {
+            Toast({
+              message: "账号或密码错误",
+              position: "middle",
+              duration: 5000
+            });
+          }
+          if(res.data.code==200){
+            this.$router.push("/home")
+          }
         });
     }
   }
