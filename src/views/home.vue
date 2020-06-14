@@ -25,18 +25,21 @@
         <div class="nav-item">
           <img
             src="../assets/images/home-tab/project.png"
+            @click="$router.push('/project-input')"
             alt=""
           >
         </div>
         <div class="nav-item">
           <img
             src="../assets/images/home-tab/scenic.png"
+            @click="$router.push('/scenic-input')"
             alt=""
           >
         </div>
         <div class="nav-item">
           <img
             src="../assets/images/home-tab/merchant.png"
+            @click="$router.push('/merchant-input')"
             alt=""
           >
         </div>

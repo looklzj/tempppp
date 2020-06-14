@@ -4,7 +4,7 @@ import Login from '../views/login.vue'
 
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
     path: '/',
     name: 'login',
@@ -13,11 +13,28 @@ Vue.use(VueRouter)
   {
     path: '/home',
     name: 'home',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/home.vue')
-  }
+    component: () => import('../views/home.vue')
+  },
+  {
+    path: '/records',
+    name: 'records',
+    component: () => import('../views/records.vue')
+  },
+  {
+    path: "/project-input",
+    name: "project-input",
+    component: () => import("../views/project-input.vue")
+  }, ,
+  {
+    path: "/scenic-input",
+    name: "scenic-input",
+    component: () => import("../views/scenic-input.vue")
+  }, ,
+  {
+    path: "/merchant-input",
+    name: "merchant-input",
+    component: () => import("../views/merchant-input.vue")
+  },
 ]
 
 const router = new VueRouter({

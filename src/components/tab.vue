@@ -1,5 +1,8 @@
 <template>
-  <div class="tab">
+  <div
+    class="tab"
+    v-if="active!=''"
+  >
     <div>
       <img
         @click="$router.push('/home')"
@@ -45,6 +48,8 @@ export default {
           this.active = "records";
         } else if (newVal === "/notice") {
           this.active = "notice";
+        } else {
+          this.active = "";
         }
       },
       immediate: true
