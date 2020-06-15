@@ -90,12 +90,12 @@ export default {
         });
     },
     getLogData() {
-      axios.get("http://127.0.0.1:9080/v1/log/list").then(res => {
+      axios.get("http://rechengparty.com:9080/v1/log/list").then(res => {
         this.logs = res.data.data;
       });
     },
     getCount() {
-      axios.get("http://127.0.0.1:9080/v1/count").then(res => {
+      axios.get("http://rechengparty.com:9080/v1/count").then(res => {
         this.countObj = res.data.data;
       });
     },
