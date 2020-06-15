@@ -168,6 +168,7 @@ export default {
     return {
       user: "",
       ruleForm: {
+        id: 0,
         merchant_name: "",
         boss_name: "",
         contact_phone: "",
@@ -212,8 +213,20 @@ export default {
     this.user = window.decodeURIComponent(
       window.location.search.split("user=")[1]
     );
+    this.getData();
   },
   methods: {
+    getData() {
+      if (this.$route.query.id) {
+        axios
+          .get(
+            "http://47.111.181.52:9080/v1/merchant?id=" + this.$route.query.id
+          )
+          .then(res => {
+            this.ruleForm = res.data;
+          });
+      }
+    },
     submitForm(formName) {
       let that = this;
       this.$refs[formName].validate(valid => {

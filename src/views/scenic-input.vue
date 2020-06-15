@@ -223,6 +223,7 @@ export default {
     return {
       user: "",
       ruleForm: {
+        id: 0,
         scenic_name: "",
         scenic_type: "",
         scenic_level: "",
@@ -275,8 +276,18 @@ export default {
     this.user = window.decodeURIComponent(
       window.location.search.split("user=")[1]
     );
+    this.getData();
   },
   methods: {
+    getData() {
+      if (this.$route.query.id) {
+        axios
+          .get("http://47.111.181.52:9080/v1/scenic?id=" + this.$route.query.id)
+          .then(res => {
+            this.ruleForm = res.data;
+          });
+      }
+    },
     submitForm(formName) {
       let that = this;
       this.$refs[formName].validate(valid => {
@@ -321,7 +332,7 @@ export default {
     z-index: 10;
     text-align: center;
     span {
-      color:#00bf8b;
+      color: #00bf8b;
       &:nth-child(1) {
         float: left;
         margin-left: 24px;
