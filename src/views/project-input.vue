@@ -156,6 +156,8 @@
 </template>
 <script>
 import axios from "axios";
+import { Toast } from "mint-ui";
+
 export default {
   data() {
     return {
@@ -233,15 +235,23 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://47.111.181.52:9080/v1/project?user=" + this.user,
+              "http://127.0.0.1:9080/v1/project?user=" + this.user,
               this.ruleForm
             )
             .then(res => {
               if (res.data.code == 400) {
-                that.$message(res.data.data);
+                Toast({
+                  message: res.data.data,
+                  position: "middle",
+                  duration: 5000
+                });
               }
               if (res.data.code == 200) {
-                that.$message("添加成功");
+                Toast({
+                  message: "操作成功",
+                  position: "middle",
+                  duration: 5000
+                });
                 window.location.reload(true);
               }
             });

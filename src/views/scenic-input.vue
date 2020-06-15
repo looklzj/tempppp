@@ -217,6 +217,7 @@
   </div>
 </template>
 <script>
+import { Toast } from "mint-ui";
 import axios from "axios";
 export default {
   data() {
@@ -299,10 +300,18 @@ export default {
             )
             .then(res => {
               if (res.data.code == 400) {
-                that.$message(res.data.data);
+                Toast({
+                  message: res.data.data,
+                  position: "middle",
+                  duration: 5000
+                });
               }
               if (res.data.code == 200) {
-                that.$message("添加成功");
+                Toast({
+                  message: "操作成功",
+                  position: "middle",
+                  duration: 5000
+                });
                 window.location.reload(true);
               }
             });
