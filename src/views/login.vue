@@ -37,9 +37,6 @@ export default {
       password: ""
     };
   },
-  mounted() {
-    this.$router.push("/records");
-  },
   methods: {
     loginHandler() {
       let that = this;

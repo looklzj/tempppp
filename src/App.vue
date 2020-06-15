@@ -1,16 +1,28 @@
 <template>
   <div id="app">
     <router-view />
-    <tab/>
+    <tab />
   </div>
 </template>
 <script>
-import Tab from "./components/tab"
+import Tab from "./components/tab";
 export default {
-  components:{
-    Tab,
+  components: {
+    Tab
+  },
+  mounted() {
+    let that = this;
+    setInterval(() => {
+      let username = window.localStorage.getItem("username");
+      if (!username) {
+        that.$router.push("/");
+      }
+      if (username && that.$route.path === "/") {
+        that.$router.push("/home");
+      }
+    }, 1000);
   }
-}
+};
 </script>
 <style lang="scss">
 @function pxToRem($px, $base: 16) {
@@ -40,7 +52,7 @@ html {
     font-size: $html-size * 540 / 375 + px;
   }
 }
-body{
+body {
   margin: 0;
 }
 #app {

@@ -206,7 +206,7 @@ export default {
         "合同审核",
         "签约履约"
       ],
-      customer_levels: ["一", "二", "三", "四", "五"]
+      customer_levels: ["A", "B", "C", "D"]
     };
   },
   mounted() {

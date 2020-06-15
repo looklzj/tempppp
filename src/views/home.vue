@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="top">
-      <h1 class="username">管理员</h1>
+      <h1 class="username">{{username}}</h1>
       <div class="banner">
         <div class="title">信息录入<span>（本周）</span></div>
         <div class="infos">
@@ -112,7 +112,28 @@
     </div>
   </div>
 </template>
-<script></script>
+<script>
+import axios from "axios"
+export default {
+  data(){
+    return {
+      username:"",
+    }
+  },
+  mounted(){
+    this.getUserData()
+  },
+  methods:{
+    getUserData(){
+      let username=window.localStorage.getItem("username")
+      axios.get("http://rechengparty.com:9080/v1/user/get?username="+username).
+      then(res=>{
+        this.username=res.data.username
+      })
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 .home {
   margin-bottom: 60px;
@@ -131,7 +152,7 @@
     .banner {
       box-shadow: 0 0 15px 2px #ccc;
       margin: 0 auto;
-      width: 6.5rem;
+      width: 6.3rem;
       background: #fff;
       font-size: 0.4rem;
       border-radius: 0.2rem;
