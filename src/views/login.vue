@@ -42,6 +42,7 @@ export default {
   },
   methods: {
     loginHandler() {
+      let that = this;
       axios
         .post("http://rechengparty.com:9080/v1/user/login", {
           username: this.username,
@@ -56,6 +57,7 @@ export default {
             });
           }
           if (res.data.code == 200) {
+            window.localStorage.setItem("username", that.username);
             this.$router.push("/home");
           }
         });
