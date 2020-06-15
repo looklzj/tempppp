@@ -274,9 +274,7 @@ export default {
     };
   },
   mounted() {
-    this.user = window.decodeURIComponent(
-      window.location.search.split("user=")[1]
-    );
+    this.user = window.localStorage.getItem("username")
     this.getData();
   },
   methods: {
@@ -295,7 +293,7 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://47.111.181.52:9080/v1/scenic?user=" + this.user,
+              "http://127.0.0.1:9080/v1/scenic?user=" + this.user,
               this.ruleForm
             )
             .then(res => {

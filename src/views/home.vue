@@ -3,19 +3,19 @@
     <div class="top">
       <h1 class="username">{{username}}</h1>
       <div class="banner">
-        <div class="title">信息录入<span>（本周）</span></div>
+        <div class="title">信息录入<span></span></div>
         <div class="infos">
           <div class="info">
-            <div class="num">+77</div>
+            <div class="num">+{{countObj.project}}</div>
             <div class="label">项目</div>
           </div>
           <div class="info">
-            <div class="num">+77</div>
-            <div class="label">项目</div>
+            <div class="num">+{{countObj.scenic}}</div>
+            <div class="label">景区</div>
           </div>
           <div class="info">
-            <div class="num">+77</div>
-            <div class="label">项目</div>
+            <div class="num">+{{countObj.merchant}}</div>
+            <div class="label">商户</div>
           </div>
         </div>
       </div>
@@ -48,91 +48,58 @@
     <div class="bottom">
       <h1>即时动态</h1>
       <ul>
-        <li>
-          <div class="username">小二</div>
+        <li
+          v-for="(item,index) in logs"
+          :key="index"
+        >
+          <div class="username">{{item.username}}</div>
           <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
+          <p class="time">{{item.created_at}}</p>
         </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
-        <li>
-          <div class="username">小二</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">5月26日</p>
-        </li>
+
       </ul>
     </div>
   </div>
 </template>
 <script>
-import axios from "axios"
+import axios from "axios";
 export default {
-  data(){
+  data() {
     return {
-      username:"",
-    }
+      username: "",
+      logs: [],
+      countObj:{}
+    };
   },
-  mounted(){
-    this.getUserData()
+  mounted() {
+    this.getUserData();
+    setInterval(() => {
+      this.getLogData();
+      this.getCount();
+    }, 2000);
   },
-  methods:{
-    getUserData(){
-      let username=window.localStorage.getItem("username")
-      axios.get("http://rechengparty.com:9080/v1/user/get?username="+username).
+  methods: {
+    getUserData() {
+      let username = window.localStorage.getItem("username");
+      axios
+        .get("http://rechengparty.com:9080/v1/user/get?username=" + username)
+        .then(res => {
+          this.username = res.data.username;
+        });
+    },
+    getLogData() {
+      axios.get("http://127.0.0.1:9080/v1/log/list").then(res => {
+        this.logs = res.data.data;
+      });
+    },
+    getCount(){
+      axios.get("http://127.0.0.1:9080/v1/count"). 
       then(res=>{
-        this.username=res.data.username
+        this.countObj=res.data.data
       })
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .home {

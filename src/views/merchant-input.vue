@@ -211,9 +211,7 @@ export default {
     };
   },
   mounted() {
-    this.user = window.decodeURIComponent(
-      window.location.search.split("user=")[1]
-    );
+    this.user = window.localStorage.getItem("username")
     this.getData();
   },
   methods: {
