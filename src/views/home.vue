@@ -73,10 +73,12 @@ export default {
   },
   created() {
     this.getUserData();
+    this.getLogData();
+    this.getCount();
     setInterval(() => {
       this.getLogData();
       this.getCount();
-    }, 2000);
+    }, 3000);
   },
   methods: {
     getUserData() {
