@@ -53,8 +53,8 @@
           :key="index"
         >
           <div class="username">{{item.username}}</div>
-          <p class="content">添加了成都欢乐谷乐园的景区信息</p>
-          <p class="time">{{item.created_at}}</p>
+          <p class="content">{{parseContent(item.content,item.typ)}}</p>
+          <p class="time">{{new Date(item.created_at*1000).getMonth()+1+"月"+new Date(item.created_at*1000).getDate()+"日"}}</p>
         </li>
 
       </ul>
@@ -68,10 +68,10 @@ export default {
     return {
       username: "",
       logs: [],
-      countObj:{}
+      countObj: {}
     };
   },
-  mounted() {
+  created() {
     this.getUserData();
     setInterval(() => {
       this.getLogData();
@@ -92,11 +92,28 @@ export default {
         this.logs = res.data.data;
       });
     },
-    getCount(){
-      axios.get("http://127.0.0.1:9080/v1/count"). 
-      then(res=>{
-        this.countObj=res.data.data
-      })
+    getCount() {
+      axios.get("http://127.0.0.1:9080/v1/count").then(res => {
+        this.countObj = res.data.data;
+      });
+    },
+    parseContent(content, typ) {
+      let obj = content + "";
+      obj = JSON.parse(obj);
+      console.log(obj);
+      if (typ == 1) {
+        return "更新了" + obj.customer_name + "的项目信息";
+      } else if (typ == 2) {
+        return "添加了" + obj.customer_name + "的项目信息";
+      } else if (typ == 11) {
+        return "更新了" + obj.scenic_name + "的景区信息";
+      } else if (typ == 12) {
+        return "添加了" + obj.scenic_name + "的景区信息";
+      } else if (typ == 21) {
+        return "更新了" + obj.merchant_name + "的商户信息";
+      } else if (typ == 22) {
+        return "添加了" + obj.merchant_name + "的商户信息";
+      }
     }
   }
 };
