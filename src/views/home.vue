@@ -78,7 +78,7 @@ export default {
     setInterval(() => {
       this.getLogData();
       this.getCount();
-    }, 3000);
+    }, 2000);
   },
   methods: {
     getUserData() {
