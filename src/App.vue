@@ -12,6 +12,13 @@ export default {
   },
   mounted() {
     let that = this;
+    let username = window.localStorage.getItem("username");
+    if (!username) {
+      that.$router.push("/");
+    }
+    if (username && that.$route.path === "/") {
+      that.$router.push("/home");
+    }
     setInterval(() => {
       let username = window.localStorage.getItem("username");
       if (!username) {
