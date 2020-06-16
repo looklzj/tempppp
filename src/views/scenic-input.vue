@@ -310,7 +310,7 @@ export default {
                   position: "middle",
                   duration: 5000
                 });
-                window.location.reload(true);
+                 this.$router.push("/home");
               }
             });
         } else {
