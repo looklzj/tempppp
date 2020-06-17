@@ -1,27 +1,25 @@
 <template>
   <div>
-    <mt-field
-      placeholder="标题"
+    <input
+      label="标题"
+      placeholder="请输入标题"
       v-model="title"
-    ></mt-field>
-    <mt-field
-      placeholder="内容"
+    />
+    <textarea
+      label="内容"
+      placeholder="请输入内容"
       type="textarea"
       rows="4"
       v-modal="content"
-    ></mt-field>
+    ></textarea>
   </div>
 </template>
 <script>
-import { Field } from "mint-ui";
 export default {
-  components: {
-    Field
-  },
   data() {
     return {
-        title:"",
-        content:"",
+      title: "",
+      content: ""
     };
   }
 };
