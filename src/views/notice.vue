@@ -7,13 +7,31 @@
       <div class="card">
         <h2>公告标题</h2>
         <p>公告内容公告内容公告内公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容容公告内容公告内容公告内容公告内容公告内容</p>
+        <div class="delete-notice">
+          <i class="el-icon-delete"
+          @click="deleteNotice"
+          ></i>
+        </div>
       </div>
+    </div>
+    <div class="add-icon">
+      <i
+        class="el-icon-plus"
+        @click="addNotice"
+      ></i>
     </div>
   </div>
 </template>
 <script>
 import axios from "axios";
-export default {};
+export default {
+  methods: {
+    deleteNotice(){},
+    addNotice() {
+      this.$router.push("/notice-input");
+    }
+  }
+};
 </script>
 <style lang="scss" scoped>
 .notice {
@@ -43,6 +61,27 @@ export default {};
         font-size: 0.38rem;
         text-align: left;
       }
+      .delete-notice {
+        text-align: right;
+        color: #00bf8b;
+        font-size: 35px;
+        margin: 0 10px;
+      }
+    }
+  }
+  .add-icon {
+    position: fixed;
+    bottom: 100px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    box-shadow: 0 0 6px 2px #ccc;
+    i {
+      color: #00bf8b;
     }
   }
 }

@@ -40,6 +40,11 @@ const routes = [
     name: "merchant-input",
     component: () => import("../views/merchant-input.vue")
   },
+  {
+    path: "/notice-input",
+    name: "notice-input",
+    component: () => import("../views/notice-input.vue")
+  },
 ]
 
 const router = new VueRouter({
