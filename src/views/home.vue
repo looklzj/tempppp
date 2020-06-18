@@ -57,7 +57,7 @@
             <span>{{parseContent1(item.content,item.typ)}}</span>
             <span
               class="link"
-              @click="lookDetail(item)"
+              @click="lookDetail(item.content,item.typ)"
             >{{parseContent2(item.content,item.typ)}}</span>
             <span>{{parseContent3(item.content,item.typ)}}</span>
           </p>
@@ -106,28 +106,26 @@ export default {
         this.countObj = res.data.data;
       });
     },
-    lookDetail(item) {
+    lookDetail(content, typ) {
       let obj = content + "";
       obj = JSON.parse(obj);
-      console.log(obj);
       if (typ == 1) {
-        this.$router.push("/project-input?id=" + content.id);
+        this.$router.push("/project-input?id=" + obj.id);
       } else if (typ == 2) {
-        this.$router.push("/project-input?id=" + content.id);
+        this.$router.push("/project-input?id=" + obj.id);
       } else if (typ == 11) {
-        this.$router.push("/scenic-input?id=" + content.id);
+        this.$router.push("/scenic-input?id=" + obj.id);
       } else if (typ == 12) {
-        this.$router.push("/scenic-input?id=" + content.id);
+        this.$router.push("/scenic-input?id=" + obj.id);
       } else if (typ == 21) {
-        this.$router.push("/merchant-input?id=" + content.id);
+        this.$router.push("/merchant-input?id=" + obj.id);
       } else if (typ == 22) {
-        this.$router.push("/merchant-input?id=" + content.id);
+        this.$router.push("/merchant-input?id=" + obj.id);
       }
     },
     parseContent1(content, typ) {
       let obj = content + "";
       obj = JSON.parse(obj);
-      console.log(obj);
       if (typ == 1) {
         return "更新了";
       } else if (typ == 2) {
@@ -145,7 +143,6 @@ export default {
     parseContent2(content, typ) {
       let obj = content + "";
       obj = JSON.parse(obj);
-      console.log(obj);
       if (typ == 1) {
         return obj.customer_name;
       } else if (typ == 2) {
@@ -163,7 +160,6 @@ export default {
     parseContent3(content, typ) {
       let obj = content + "";
       obj = JSON.parse(obj);
-      console.log(obj);
       if (typ == 1) {
         return "的项目信息";
       } else if (typ == 2) {

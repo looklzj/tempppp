@@ -41,7 +41,6 @@ export default {
   watch: {
     "$route.path": {
       handler: function(newVal, oldVal) {
-        console.log(newVal);
         if (newVal === "/home") {
           this.active = "home";
         } else if (newVal === "/records") {
