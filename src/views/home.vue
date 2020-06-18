@@ -53,7 +53,14 @@
           :key="index"
         >
           <div class="username">{{item.username}}</div>
-          <p class="content">{{parseContent(item.content,item.typ)}}</p>
+          <p class="content">
+            <span>{{parseContent1(item.content,item.typ)}}</span>
+            <span
+              class="link"
+              @click="lookDetail(item)"
+            >{{parseContent2(item.content,item.typ)}}</span>
+            <span>{{parseContent3(item.content,item.typ)}}</span>
+          </p>
           <p class="time">{{new Date(item.created_at*1000).getMonth()+1+"月"+new Date(item.created_at*1000).getDate()+"日"}}</p>
         </li>
 
@@ -99,22 +106,76 @@ export default {
         this.countObj = res.data.data;
       });
     },
-    parseContent(content, typ) {
+    lookDetail(item) {
       let obj = content + "";
       obj = JSON.parse(obj);
       console.log(obj);
       if (typ == 1) {
-        return "更新了" + obj.customer_name + "的项目信息";
+        this.$router.push("/project-input?id=" + content.id);
       } else if (typ == 2) {
-        return "添加了" + obj.customer_name + "的项目信息";
+        this.$router.push("/project-input?id=" + content.id);
       } else if (typ == 11) {
-        return "更新了" + obj.scenic_name + "的景区信息";
+        this.$router.push("/scenic-input?id=" + content.id);
       } else if (typ == 12) {
-        return "添加了" + obj.scenic_name + "的景区信息";
+        this.$router.push("/scenic-input?id=" + content.id);
       } else if (typ == 21) {
-        return "更新了" + obj.merchant_name + "的商户信息";
+        this.$router.push("/merchant-input?id=" + content.id);
       } else if (typ == 22) {
-        return "添加了" + obj.merchant_name + "的商户信息";
+        this.$router.push("/merchant-input?id=" + content.id);
+      }
+    },
+    parseContent1(content, typ) {
+      let obj = content + "";
+      obj = JSON.parse(obj);
+      console.log(obj);
+      if (typ == 1) {
+        return "更新了";
+      } else if (typ == 2) {
+        return "添加了";
+      } else if (typ == 11) {
+        return "更新了";
+      } else if (typ == 12) {
+        return "添加了";
+      } else if (typ == 21) {
+        return "更新了";
+      } else if (typ == 22) {
+        return "添加了";
+      }
+    },
+    parseContent2(content, typ) {
+      let obj = content + "";
+      obj = JSON.parse(obj);
+      console.log(obj);
+      if (typ == 1) {
+        return obj.customer_name;
+      } else if (typ == 2) {
+        return obj.customer_name;
+      } else if (typ == 11) {
+        return obj.scenic_name;
+      } else if (typ == 12) {
+        return obj.scenic_name;
+      } else if (typ == 21) {
+        return obj.merchant_name;
+      } else if (typ == 22) {
+        return obj.merchant_name;
+      }
+    },
+    parseContent3(content, typ) {
+      let obj = content + "";
+      obj = JSON.parse(obj);
+      console.log(obj);
+      if (typ == 1) {
+        return "的项目信息";
+      } else if (typ == 2) {
+        return "的项目信息";
+      } else if (typ == 11) {
+        return "的景区信息";
+      } else if (typ == 12) {
+        return "的景区信息";
+      } else if (typ == 21) {
+        return "的商户信息";
+      } else if (typ == 22) {
+        return "的商户信息";
       }
     }
   }
@@ -212,6 +273,9 @@ export default {
           margin: 0;
           font-size: 0.38rem;
           color: #00bf8b;
+          .link {
+            border-bottom: 1px solid #00bf8b;
+          }
         }
         .time {
           margin: 0;
