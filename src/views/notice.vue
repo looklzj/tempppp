@@ -4,17 +4,28 @@
       <h1>公告</h1>
     </div>
     <div class="content">
-      <div class="card">
-        <h2>公告标题</h2>
-        <p>公告内容公告内容公告内公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容公告内容容公告内容公告内容公告内容公告内容公告内容</p>
-        <div class="delete-notice">
-          <i class="el-icon-delete"
-          @click="deleteNotice"
+      <div
+        class="card"
+        v-for="(item,index) in list"
+        :key="index"
+      >
+        <h2>{{item.title}}</h2>
+        <p>{{item.content}}</p>
+        <div
+          class="delete-notice"
+          v-if="user==='魏晓飞'"
+        >
+          <i
+            class="el-icon-delete"
+            @click="deleteNotice(item.id)"
           ></i>
         </div>
       </div>
     </div>
-    <div class="add-icon">
+    <div
+      class="add-icon"
+      v-if="user==='魏晓飞'"
+    >
       <i
         class="el-icon-plus"
         @click="addNotice"
@@ -25,8 +36,24 @@
 <script>
 import axios from "axios";
 export default {
+  data() {
+    return {
+      user: "",
+      list: []
+    };
+  },
+  mounted() {
+    this.user = window.localStorage.getItem("username");
+    this.getData();
+  },
   methods: {
-    deleteNotice(){},
+    getData() {
+      axios.get("http://47.111.181.52:9080/v1/notice/list").then(res => {
+        console.log(res.data);
+        this.list = res.data;
+      });
+    },
+    deleteNotice() {},
     addNotice() {
       this.$router.push("/notice-input");
     }
@@ -40,7 +67,6 @@ export default {
     background: #00bf8b;
     height: 3rem;
     h1 {
-      //   margin: 0;
       padding-left: 0.35rem;
       text-align: left;
       color: #fff;
