@@ -211,7 +211,7 @@
       <el-button
         style="background:#00BF8B;width:80%;margin:0 auto;color:#fff"
         @click="submitForm('ruleForm')"
-      >立即创建</el-button>
+      >{{bottomBtn}}</el-button>
 
     </el-form>
   </div>
@@ -222,6 +222,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      bottomBtn:"立即创建",
       user: "",
       ruleForm: {
         id: 0,
@@ -280,6 +281,7 @@ export default {
   methods: {
     getData() {
       if (this.$route.query.id) {
+        this.bottomBtn="立即修改"
         axios
           .get("http://47.111.181.52:9080/v1/scenic?id=" + this.$route.query.id)
           .then(res => {

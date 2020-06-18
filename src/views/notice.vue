@@ -76,8 +76,8 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
-    height: 70px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     box-shadow: 0 0 6px 2px #ccc;
     i {
