@@ -51,11 +51,12 @@ export default {
   methods: {
     getData() {
       axios.get("http://47.111.181.52:9080/v1/notice/list").then(res => {
-        console.log(res.data);
-        this.list = res.data;
+        console.log(res.data.data);
+        this.list = res.data.data;
       });
     },
     deleteNotice(id) {
+      let that = this;
       axios
         .get("http://47.111.181.52:9080/v1/notice/delete?id=" + id)
         .then(res => {
@@ -72,6 +73,7 @@ export default {
               duration: 5000
             });
           }
+          that.getData();
         });
     },
     addNotice() {
@@ -82,6 +84,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .notice {
+  margin-bottom: 100px;
   .top {
     padding-top: 10px;
     background: #00bf8b;
@@ -125,6 +128,7 @@ export default {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    background: #fff;
     box-shadow: 0 0 6px 2px #ccc;
     i {
       color: #00bf8b;

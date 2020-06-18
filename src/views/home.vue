@@ -75,17 +75,21 @@ export default {
     return {
       username: "",
       logs: [],
-      countObj: {}
+      countObj: {},
+      timer:null
     };
   },
   created() {
     this.getUserData();
     this.getLogData();
     this.getCount();
-    setInterval(() => {
+    this.timer=setInterval(() => {
       this.getLogData();
       this.getCount();
     }, 2000);
+  },
+  beforeDestroy(){
+    clearInterval(this.timer)
   },
   methods: {
     getUserData() {

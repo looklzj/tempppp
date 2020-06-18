@@ -1,17 +1,22 @@
 <template>
   <div class="notice-input">
     <div class="header">
-      <span @click="$router.go(-1)"
-        ><i
-          class="el-icon-arrow-left"
-        ></i></span
-      ><span>公告</span>
+      <span @click="$router.go(-1)"><i class="el-icon-arrow-left"></i></span><span>公告</span>
     </div>
-    <el-form>
-      <el-form-item label="标题" prop="title">
+    <el-form
+      :model="ruleForm"
+      ref="ruleForm"
+    >
+      <el-form-item
+        label="标题"
+        prop="title"
+      >
         <el-input v-model="ruleForm.title"></el-input>
       </el-form-item>
-      <el-form-item label="内容" prop="content">
+      <el-form-item
+        label="内容"
+        prop="content"
+      >
         <el-input
           type="textarea"
           :rows="5"
@@ -22,21 +27,54 @@
       <el-button
         style="background:#00BF8B;width:80%;margin:0 auto;color:#fff"
         @click="submitForm('ruleForm')"
-        >立即创建</el-button
-      >
+      >立即创建</el-button>
     </el-form>
   </div>
 </template>
 <script>
+import { Toast } from "mint-ui";
+import axios from "axios";
+
 export default {
   data() {
     return {
       ruleForm: {
         title: "",
-        content: "",
-      },
+        content: ""
+      }
     };
   },
+  methods: {
+    submitForm(formName) {
+      let that = this;
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          axios
+            .post("http://47.111.181.52:9080/v1/notice", this.ruleForm)
+            .then(res => {
+              if (res.data.code == 400) {
+                Toast({
+                  message: res.data.data,
+                  position: "middle",
+                  duration: 5000
+                });
+              }
+              if (res.data.code == 200) {
+                Toast({
+                  message: "操作成功",
+                  position: "middle",
+                  duration: 5000
+                });
+              }
+              this.$router.push("/notice");
+            });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
