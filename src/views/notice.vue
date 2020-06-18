@@ -35,6 +35,8 @@
 </template>
 <script>
 import axios from "axios";
+import { Toast } from "mint-ui";
+
 export default {
   data() {
     return {
@@ -53,7 +55,25 @@ export default {
         this.list = res.data;
       });
     },
-    deleteNotice() {},
+    deleteNotice(id) {
+      axios
+        .get("http://47.111.181.52:9080/v1/notice/delete?id=" + id)
+        .then(res => {
+          if (res.data.code == 200) {
+            Toast({
+              message: "操作成功",
+              position: "middle",
+              duration: 5000
+            });
+          } else {
+            Toast({
+              message: "操作失败",
+              position: "middle",
+              duration: 5000
+            });
+          }
+        });
+    },
     addNotice() {
       this.$router.push("/notice-input");
     }
