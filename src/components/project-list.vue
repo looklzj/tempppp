@@ -1,6 +1,15 @@
 <template>
   <div class="list">
     <ul>
+      <li>
+        <ul>
+          <li></li>
+          <li
+            v-for="(item,index) in titles"
+            :key="index"
+          >{{item}}</li>
+        </ul>
+      </li>
       <li
         v-for="(item,index) in list"
         :key="index"
@@ -21,7 +30,25 @@ import axios from "axios";
 
 export default {
   data() {
-    return { list: [] };
+    return {
+      list: [],
+      titles: [
+        "客户名称",
+        "电话号码",
+        "微信号",
+        "客户来源",
+        "公司名称",
+        "客户行业",
+        "客户类别",
+        "项目类型",
+        "需求产品",
+        "项目地址",
+        "项目名称",
+        "项目状况",
+        "客户等级",
+        "初次沟通内容"
+      ]
+    };
   },
   methods: {
     toggle(v) {
@@ -53,19 +80,23 @@ export default {
     display: flex;
     flex-direction: column;
     > li {
+      &:nth-child(1) {
+        color: #909399;
+        font-weight: 500;
+      }
       > ul {
         display: flex;
         flex-direction: row;
         list-style: none;
         padding: 0;
-        margin: 0;
+        margin: 2px;
         > li {
           word-break: keep-all;
           white-space: nowrap;
           flex: 0 0 3rem;
           overflow: hidden;
           text-overflow: ellipsis;
-          color: #00bf8b;
+          color: #606266;
           pointer-events: none;
           &:nth-child(1) {
             display: none;

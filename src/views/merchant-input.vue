@@ -1,6 +1,8 @@
 <template>
   <div class="project-input">
-    <div class="header"><span @click="$router.go(-1)">&lt;</span><span>商户</span></div>
+    <div class="header"><span @click="$router.go(-1)"><i
+          class="el-icon-arrow-left"
+        ></i></span><span>商户</span></div>
 
     <el-form
       :model="ruleForm"

@@ -1,6 +1,6 @@
 <template>
   <div class="project-input">
-    <div class="header"><span @click="$router.go(-1)">&lt;</span><span>景区</span></div>
+    <div class="header"><span @click="$router.go(-1)"><i class="el-icon-arrow-left"></i></span><span>景区</span></div>
     <el-form
       :model="ruleForm"
       :rules="rules"
@@ -274,7 +274,7 @@ export default {
     };
   },
   mounted() {
-    this.user = window.localStorage.getItem("username")
+    this.user = window.localStorage.getItem("username");
     this.getData();
   },
   methods: {
@@ -310,7 +310,7 @@ export default {
                   position: "middle",
                   duration: 5000
                 });
-                 this.$router.push("/home");
+                this.$router.push("/home");
               }
             });
         } else {

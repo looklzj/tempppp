@@ -124,6 +124,7 @@ export default {
 .home {
   margin-bottom: 60px;
   .top {
+    position: relative;
     background: #00bf8b;
     padding-top: 10px;
     height: 3rem;
@@ -136,8 +137,11 @@ export default {
       color: #fff;
     }
     .banner {
+      position: absolute;
       box-shadow: 0 0 15px 2px #ccc;
-      margin: 0 auto;
+      top: 55%;
+      left: 50%;
+      transform: translateX(-50%);
       width: 6.3rem;
       background: #fff;
       font-size: 0.4rem;
