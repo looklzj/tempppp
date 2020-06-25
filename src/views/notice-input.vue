@@ -50,7 +50,7 @@ export default {
       this.$refs[formName].validate(valid => {
         if (valid) {
           axios
-            .post("http://47.97.229.24:9080/v1/notice", this.ruleForm)
+            .post("http://127.0.0.1:9080/v1/notice", this.ruleForm)
             .then(res => {
               if (res.data.code == 400) {
                 Toast({

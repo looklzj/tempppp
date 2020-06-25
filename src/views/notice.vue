@@ -11,6 +11,7 @@
       >
         <h2>{{item.title}}</h2>
         <p>{{item.content}}</p>
+        <i>{{item.created_at.split("+")[0].replace("T"," ")}}</i>
         <div
           class="delete-notice"
           v-if="user==='魏晓飞'"
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     getData() {
-      axios.get("http://47.97.229.24:9080/v1/notice/list").then(res => {
+      axios.get("http://127.0.0.1:9080/v1/notice/list").then(res => {
         if (res.data.code == 200) {
           this.list = res.data.data;
         }
@@ -111,10 +112,13 @@ export default {
         font-size: 0.38rem;
         text-align: left;
       }
+      >i{
+        font-size:13px;
+      }
       .delete-notice {
         text-align: right;
         color: #00bf8b;
-        font-size: 35px;
+        font-size: 30px;
         margin: 0 10px;
       }
     }
