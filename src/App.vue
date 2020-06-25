@@ -28,6 +28,22 @@ export default {
         that.$router.push("/home");
       }
     }, 1000);
+  },
+  methods: {
+    getNewNotice() {
+      axios.get("http://127.0.0.1:9080/v1/notice/new").then(res => {
+        if (res.data.code == 200) {
+          this.list = res.data.data;
+        }
+      });
+    },
+    readNewNotice(){
+      axios.post("http://127.0.0.1:9080/v1/notice/new").then(res=>{
+        if (res.data.code==20){
+          
+        }
+      })
+    }
   }
 };
 </script>
