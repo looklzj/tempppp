@@ -51,8 +51,9 @@ export default {
   methods: {
     getData() {
       axios.get("http://47.97.229.24:9080/v1/notice/list").then(res => {
-        console.log(res.data.data);
-        this.list = res.data.data;
+        if (res.data.code == 200) {
+          this.list = res.data.data;
+        }
       });
     },
     deleteNotice(id) {
