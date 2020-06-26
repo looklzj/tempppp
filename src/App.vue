@@ -39,8 +39,8 @@ export default {
     },
     readNewNotice(){
       axios.post("http://127.0.0.1:9080/v1/notice/new").then(res=>{
-        if (res.data.code==20){
-          
+        if (res.data.code==200){
+
         }
       })
     }
