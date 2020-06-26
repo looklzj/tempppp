@@ -8,18 +8,27 @@
 import Tab from "./components/tab";
 export default {
   components: {
-    Tab
+    Tab,
   },
   mounted() {
-    let that = this;
-    let username = window.localStorage.getItem("username");
-    if (!username) {
-      that.$router.push("/");
-    }
-    if (username && that.$route.path === "/") {
-      that.$router.push("/home");
-    }
-    setInterval(() => {
+    this.loginRefresh();
+  },
+  methods: {
+    getNewNotice() {
+      axios.get("http://127.0.0.1:9080/v1/notice/new").then((res) => {
+        if (res.data.code == 200) {
+          this.list = res.data.data;
+        }
+      });
+    },
+    readNewNotice() {
+      axios.post("http://127.0.0.1:9080/v1/notice/new").then((res) => {
+        if (res.data.code == 200) {
+        }
+      });
+    },
+    loginRefresh() {
+      let that = this;
       let username = window.localStorage.getItem("username");
       if (!username) {
         that.$router.push("/");
@@ -27,24 +36,17 @@ export default {
       if (username && that.$route.path === "/") {
         that.$router.push("/home");
       }
-    }, 1000);
-  },
-  methods: {
-    getNewNotice() {
-      axios.get("http://127.0.0.1:9080/v1/notice/new").then(res => {
-        if (res.data.code == 200) {
-          this.list = res.data.data;
+      setInterval(() => {
+        let username = window.localStorage.getItem("username");
+        if (!username) {
+          that.$router.push("/");
         }
-      });
+        if (username && that.$route.path === "/") {
+          that.$router.push("/home");
+        }
+      }, 1000);
     },
-    readNewNotice(){
-      axios.post("http://127.0.0.1:9080/v1/notice/new").then(res=>{
-        if (res.data.code==200){
-
-        }
-      })
-    }
-  }
+  },
 };
 </script>
 <style lang="scss">
