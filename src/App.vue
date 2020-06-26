@@ -6,20 +6,25 @@
 </template>
 <script>
 import Tab from "./components/tab";
+import axios from "axios";
 export default {
   components: {
     Tab,
   },
   mounted() {
     this.loginRefresh();
+    this.getNewNotice();
   },
   methods: {
     getNewNotice() {
-      axios.get("http://127.0.0.1:9080/v1/notice/new").then((res) => {
-        if (res.data.code == 200) {
-          this.list = res.data.data;
-        }
-      });
+      setInterval(() => {
+        axios.get("http://127.0.0.1:9080/v1/notice/new").then((res) => {
+          if (res.data.code == 200) {
+            console.log(res.data.data);
+            this.list = res.data.data;
+          }
+        });
+      },5000);
     },
     readNewNotice() {
       axios.post("http://127.0.0.1:9080/v1/notice/new").then((res) => {
