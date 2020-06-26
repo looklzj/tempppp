@@ -159,7 +159,6 @@
         style="background:#00BF8B;width:80%;margin:0 auto;color:#fff"
         @click="submitForm('ruleForm')"
       >{{bottomBtn}}</el-button>
-
     </el-form>
   </div>
 </template>
