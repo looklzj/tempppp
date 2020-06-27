@@ -27,6 +27,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      username: window.localStorage.getItem("username"),
       list: [],
       titles: [
         "景区名称",
@@ -63,11 +64,13 @@ export default {
   },
   methods: {
     getData() {
-      axios.get("http://47.97.229.24:9080/v1/scenic/list").then((res) => {
-        if (res.data.code == 200) {
-          this.list = res.data.data;
-        }
-      });
+      axios
+        .get("http://47.97.229.24:9080/v1/scenic/list?username=" + this.username)
+        .then((res) => {
+          if (res.data.code == 200) {
+            this.list = res.data.data;
+          }
+        });
     },
   },
 };

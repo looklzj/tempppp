@@ -4,22 +4,18 @@
       <li>
         <ul>
           <li></li>
-          <li
-            v-for="(item,index) in titles"
-            :key="index"
-          >{{item}}</li>
+          <li v-for="(item, index) in titles" :key="index">{{ item }}</li>
         </ul>
       </li>
-      <li
-        v-for="(item,index) in list"
-        :key="index"
-      >
+      <li v-for="(item, index) in list" :key="index">
         <ul>
           <li
-            v-for="(v,k,i) in item"
+            v-for="(v, k, i) in item"
             :key="i"
-            @click="$router.push('/project-input?id='+item.id)"
-          >{{v}}</li>
+            @click="$router.push('/project-input?id=' + item.id)"
+          >
+            {{ v }}
+          </li>
         </ul>
       </li>
     </ul>
@@ -31,6 +27,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+      username: window.localStorage.getItem("username"),
       list: [],
       titles: [
         "客户名称",
@@ -46,27 +43,31 @@ export default {
         "项目名称",
         "项目状况",
         "客户等级",
-        "初次沟通内容"
-      ]
+        "初次沟通内容",
+      ],
     };
   },
   methods: {
     toggle(v) {
       this.active = v;
-    }
+    },
   },
   mounted() {
     this.getData();
   },
   methods: {
     getData() {
-      axios.get("http://47.97.229.24:9080/v1/project/list").then(res => {
-        if (res.data.code == 200) {
-          this.list = res.data.data;
-        }
-      });
-    }
-  }
+      axios
+        .get(
+          "http://47.97.229.24:9080/v1/project/list?username=" + this.username
+        )
+        .then((res) => {
+          if (res.data.code == 200) {
+            this.list = res.data.data;
+          }
+        });
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -97,7 +98,7 @@ export default {
           overflow: hidden;
           text-overflow: ellipsis;
           color: #606266;
-          pointer-events: none; 
+          pointer-events: none;
           text-align: left;
           &:nth-child(1) {
             display: none;
