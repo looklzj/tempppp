@@ -45,7 +45,6 @@ export default {
       let that = this;
       setInterval(() => {
         let username = window.localStorage.getItem("username");
-        let that2 = that;
         axios
           .get("http://127.0.0.1:9080/v1/notice/new?username=" + username)
           .then((res) => {
@@ -54,12 +53,20 @@ export default {
       }, 5000);
     },
     readNewNotice() {
+      let username = window.localStorage.getItem("username");
+      let that = this;
       axios
         .post("http://127.0.0.1:9080/v1/notice/new?username=" + username, {
           id: this.newNotice.id,
         })
         .then((res) => {
           if (res.data.code == 200) {
+            let username = window.localStorage.getItem("username");
+            axios
+              .get("http://127.0.0.1:9080/v1/notice/new?username=" + username)
+              .then((res) => {
+                that.newNotice = res.data;
+              });
           }
         });
     },
