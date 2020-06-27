@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     getData() {
-      axios.get("http://rechengparty.com:9080/v1/merchant/list").then(res => {
+      axios.get("http://47.97.229.24:9080/v1/merchant/list").then(res => {
         if (res.data.code == 200) {
           this.list = res.data.data;
         }
@@ -99,6 +99,7 @@ export default {
           text-overflow: ellipsis;
           color: #606266;
           pointer-events: none;
+          text-align: left;
           &:nth-child(1) {
             display: none;
           }

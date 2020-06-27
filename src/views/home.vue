@@ -95,18 +95,18 @@ export default {
     getUserData() {
       let username = window.localStorage.getItem("username");
       axios
-        .get("http://rechengparty.com:9080/v1/user/get?username=" + username)
+        .get("http://47.97.229.24:9080/v1/user/get?username=" + username)
         .then(res => {
           this.username = res.data.username;
         });
     },
     getLogData() {
-      axios.get("http://rechengparty.com:9080/v1/log/list").then(res => {
+      axios.get("http://47.97.229.24:9080/v1/log/list").then(res => {
         this.logs = res.data.data;
       });
     },
     getCount() {
-      axios.get("http://rechengparty.com:9080/v1/count").then(res => {
+      axios.get("http://47.97.229.24:9080/v1/count").then(res => {
         this.countObj = res.data.data;
       });
     },

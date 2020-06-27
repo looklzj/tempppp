@@ -4,22 +4,18 @@
       <li>
         <ul>
           <li></li>
-          <li
-            v-for="(item,index) in titles"
-            :key="index"
-          >{{item}}</li>
+          <li v-for="(item, index) in titles" :key="index">{{ item }}</li>
         </ul>
       </li>
-      <li
-        v-for="(item,index) in list"
-        :key="index"
-      >
+      <li v-for="(item, index) in list" :key="index">
         <ul>
           <li
-            v-for="(v,k,i) in item"
+            v-for="(v, k, i) in item"
             :key="i"
-            @click="$router.push('/scenic-input?id='+item.id)"
-          >{{v}}</li>
+            @click="$router.push('/scenic-input?id=' + item.id)"
+          >
+            {{ v }}
+          </li>
         </ul>
       </li>
     </ul>
@@ -53,27 +49,27 @@ export default {
         "微信号码",
         "景区背景公司",
         "景区地址",
-        "初次沟通内容"
-      ]
+        "初次沟通内容",
+      ],
     };
   },
   methods: {
     toggle(v) {
       this.active = v;
-    }
+    },
   },
   mounted() {
     this.getData();
   },
   methods: {
     getData() {
-      axios.get("http://rechengparty.com:9080/v1/scenic/list").then(res => {
+      axios.get("http://47.97.229.24:9080/v1/scenic/list").then((res) => {
         if (res.data.code == 200) {
           this.list = res.data.data;
         }
       });
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -105,6 +101,7 @@ export default {
           text-overflow: ellipsis;
           color: #606266;
           pointer-events: none;
+          text-align: left;
           &:nth-child(1) {
             display: none;
           }

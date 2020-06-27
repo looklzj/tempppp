@@ -295,7 +295,7 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://rechengparty.com:9080/v1/scenic?user=" + this.user,
+              "http://47.97.229.24:9080/v1/scenic?user=" + this.user,
               this.ruleForm
             )
             .then(res => {
