@@ -101,7 +101,7 @@ export default {
         });
     },
     getLogData() {
-      axios.get("http://47.97.229.24:9080/v1/log/list").then(res => {
+      axios.get("http://127.0.0.1:9080/v1/log/list").then(res => {
         this.logs = res.data.data;
       });
     },
