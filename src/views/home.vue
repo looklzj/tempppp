@@ -1,20 +1,20 @@
 <template>
   <div class="home">
     <div class="top">
-      <h1 class="username">{{username}}</h1>
+      <h1 class="username">{{ username }}</h1>
       <div class="banner">
         <div class="title">信息录入<span></span></div>
         <div class="infos">
           <div class="info">
-            <div class="num">+{{countObj.project}}</div>
+            <div class="num">+{{ countObj.project }}</div>
             <div class="label">项目</div>
           </div>
           <div class="info">
-            <div class="num">+{{countObj.scenic}}</div>
+            <div class="num">+{{ countObj.scenic }}</div>
             <div class="label">景区</div>
           </div>
           <div class="info">
-            <div class="num">+{{countObj.merchant}}</div>
+            <div class="num">+{{ countObj.merchant }}</div>
             <div class="label">商户</div>
           </div>
         </div>
@@ -27,43 +27,46 @@
             src="../assets/images/home-tab/project.png"
             @click="$router.push('/project-input')"
             alt=""
-          >
+          />
         </div>
         <div class="nav-item">
           <img
             src="../assets/images/home-tab/scenic.png"
             @click="$router.push('/scenic-input')"
             alt=""
-          >
+          />
         </div>
         <div class="nav-item">
           <img
             src="../assets/images/home-tab/merchant.png"
             @click="$router.push('/merchant-input')"
             alt=""
-          >
+          />
         </div>
       </div>
     </div>
     <div class="bottom">
       <h1>即时动态</h1>
       <ul>
-        <li
-          v-for="(item,index) in logs"
-          :key="index"
-        >
-          <div class="username">{{item.username}}</div>
+        <li v-for="(item, index) in logs" :key="index">
+          <div class="username">{{ item.username }}</div>
           <p class="content">
-            <span>{{parseContent1(item.content,item.typ)}}</span>
-            <span
-              class="link"
-              @click="lookDetail(item.content,item.typ)"
-            >{{parseContent2(item.content,item.typ)}}</span>
-            <span>{{parseContent3(item.content,item.typ)}}</span>
+            <span>{{ parseContent1(item.content, item.typ) }}</span>
+            <span class="link" @click="lookDetail(item.content, item.typ)">{{
+              parseContent2(item.content, item.typ)
+            }}</span>
+            <span>{{ parseContent3(item.content, item.typ) }}</span>
           </p>
-          <p class="time">{{new Date(item.created_at*1000).getMonth()+1+"月"+new Date(item.created_at*1000).getDate()+"日"}}</p>
+          <p class="time">
+            {{
+              new Date(item.created_at * 1000).getMonth() +
+                1 +
+                "月" +
+                new Date(item.created_at * 1000).getDate() +
+                "日"
+            }}
+          </p>
         </li>
-
       </ul>
     </div>
   </div>
@@ -76,37 +79,37 @@ export default {
       username: "",
       logs: [],
       countObj: {},
-      timer:null
+      timer: null,
     };
   },
   created() {
     this.getUserData();
     this.getLogData();
     this.getCount();
-    this.timer=setInterval(() => {
+    this.timer = setInterval(() => {
       this.getLogData();
       this.getCount();
     }, 2000);
   },
-  beforeDestroy(){
-    clearInterval(this.timer)
+  beforeDestroy() {
+    clearInterval(this.timer);
   },
   methods: {
     getUserData() {
       let username = window.localStorage.getItem("username");
       axios
         .get("http://47.97.229.24:9080/v1/user/get?username=" + username)
-        .then(res => {
+        .then((res) => {
           this.username = res.data.username;
         });
     },
     getLogData() {
-      axios.get("http://127.0.0.1:9080/v1/log/list").then(res => {
+      axios.get("http://127.0.0.1:9080/v1/log/list").then((res) => {
         this.logs = res.data.data;
       });
     },
     getCount() {
-      axios.get("http://47.97.229.24:9080/v1/count").then(res => {
+      axios.get("http://47.97.229.24:9080/v1/count").then((res) => {
         this.countObj = res.data.data;
       });
     },
@@ -142,6 +145,8 @@ export default {
         return "更新了";
       } else if (typ == 22) {
         return "添加了";
+      } else if ((typ = 32)) {
+        return "发布了";
       }
     },
     parseContent2(content, typ) {
@@ -159,6 +164,8 @@ export default {
         return obj.merchant_name;
       } else if (typ == 22) {
         return obj.merchant_name;
+      } else if (typ == 32) {
+        return obj.title;
       }
     },
     parseContent3(content, typ) {
@@ -176,9 +183,11 @@ export default {
         return "的商户信息";
       } else if (typ == 22) {
         return "的商户信息";
+      } else if (typ == 32) {
+        return "的公告";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
