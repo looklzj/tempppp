@@ -197,7 +197,7 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://47.97.229.24:9080/v1/project?user=" + this.user,
+              "http://127.0.0.1:9080/v1/project?user=" + this.user,
               this.ruleForm
             )
             .then((res) => {
