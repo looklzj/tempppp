@@ -143,7 +143,13 @@ body {
     }
   }
 }
+.el-dialog__header{
+  padding: 0px 20px 10px !important;
+}
 .el-dialog__body {
-  padding: 0 20px;
+  padding: 0 20px !important;
+}
+.el-dialog__footer{
+      padding: 0px 20px 20px;
 }
 </style>
