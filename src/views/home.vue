@@ -5,18 +5,9 @@
       <div class="banner">
         <div class="title">
           信息录入<span class="filter">
-            <span
-              @click="getCountWeek"
-              :class="filter[0]"
-            >本周</span>
-            <span
-              @click="getCountMonth"
-              :class="filter[1]"
-            >本月</span>
-            <span
-              @click="getCount"
-              :class="filter[2]"
-            >全部</span>
+            <span @click="getCountWeek" :class="filter[0]">本周</span>
+            <span @click="getCountMonth" :class="filter[1]">本月</span>
+            <span @click="getCount" :class="filter[2]">全部</span>
           </span>
         </div>
         <div class="infos">
@@ -63,17 +54,11 @@
     <div class="bottom">
       <h1>即时动态</h1>
       <ul>
-        <li
-          v-for="(item, index) in logs"
-          :key="index"
-        >
+        <li v-for="(item, index) in logs" :key="index">
           <div class="username">{{ item.username }}</div>
           <p class="content">
             <span>{{ parseContent1(item.content, item.typ) }}</span>
-            <span
-              class="link"
-              @click="lookDetail(item.content, item.typ)"
-            >{{
+            <span class="link" @click="lookDetail(item.content, item.typ)">{{
               parseContent2(item.content, item.typ)
             }}</span>
             <span>{{ parseContent3(item.content, item.typ) }}</span>
@@ -94,7 +79,12 @@
 </template>
 <script>
 import axios from "axios";
-import { getWeekStartDate,getWeekEndDate,getMonthStartDate,getMonthEndDate } from "../utils/utils.js";
+import {
+  getWeekStartDate,
+  getWeekEndDate,
+  getMonthStartDate,
+  getMonthEndDate,
+} from "../utils/utils.js";
 export default {
   data() {
     return {
@@ -102,7 +92,7 @@ export default {
       logs: [],
       countObj: {},
       timer: null,
-      filter: ["", "", "active"]
+      filter: ["", "", "active"],
     };
   },
   created() {
@@ -111,45 +101,70 @@ export default {
     this.getCount();
     this.timer = setInterval(() => {
       this.getLogData();
-      this.getCount();
+      this._getCount();
     }, 2000);
   },
   beforeDestroy() {
     clearInterval(this.timer);
   },
   methods: {
+    _getCount() {
+      if (this.filter[0] == "active") {
+        this.getCountWeek();
+      } else if (this.filter[1] == "active") {
+        this.getCountMonth();
+      } else if (this.filter[2] == "active") {
+        this.getCount();
+      }
+    },
     getUserData() {
       let username = window.localStorage.getItem("username");
       axios
         .get("http://47.97.229.24:9080/v1/user/get?username=" + username)
-        .then(res => {
+        .then((res) => {
           this.username = res.data.username;
         });
     },
     getLogData() {
-      axios.get("http://127.0.0.1:9080/v1/log/list").then(res => {
+      axios.get("http://127.0.0.1:9080/v1/log/list").then((res) => {
         this.logs = res.data.data;
       });
     },
     getCount() {
-      axios.get("http://47.97.229.24:9080/v1/count").then(res => {
+      let that = this;
+      axios.get("http://47.97.229.24:9080/v1/count").then((res) => {
         this.countObj = res.data.data;
+        that.filter = ["", "", "active"];
       });
     },
     getCountWeek() {
       console.log(getWeekStartDate());
       let that = this;
-      axios.get("http://47.97.229.24:9080/v1/count?start="+getWeekStartDate()+"&end="+getWeekEndDate()).then(res => {
-        this.countObj = res.data.data;
-        that.filter = ["active", "", ""];
-      });
+      axios
+        .get(
+          "http://47.97.229.24:9080/v1/count?start=" +
+            getWeekStartDate() +
+            "&end=" +
+            getWeekEndDate()
+        )
+        .then((res) => {
+          this.countObj = res.data.data;
+          that.filter = ["active", "", ""];
+        });
     },
     getCountMonth() {
       let that = this;
-      axios.get("http://47.97.229.24:9080/v1/count?start="+getMonthStartDate()+"&end="+getMonthEndDate()).then(res => {
-        this.countObj = res.data.data;
-        that.filter = ["", "active", ""];
-      });
+      axios
+        .get(
+          "http://47.97.229.24:9080/v1/count?start=" +
+            getMonthStartDate() +
+            "&end=" +
+            getMonthEndDate()
+        )
+        .then((res) => {
+          this.countObj = res.data.data;
+          that.filter = ["", "active", ""];
+        });
     },
     lookDetail(content, typ) {
       let obj = content + "";
@@ -224,8 +239,8 @@ export default {
       } else if (typ == 32) {
         return "的公告";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
