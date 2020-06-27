@@ -10,7 +10,7 @@
         <br/>
         <i>{{ newNotice.created_at }}</i>
         <span slot="footer" class="dialog-footer">
-          <el-button type="primary" style="width:100%" @click="dialogVisible = false"
+          <el-button type="primary" style="width:100%" @click="readNewNotice"
             >确 定</el-button
           >
         </span>
@@ -51,7 +51,9 @@ export default {
       }, 5000);
     },
     readNewNotice() {
-      axios.post("http://127.0.0.1:9080/v1/notice/new").then((res) => {
+      axios.post("http://127.0.0.1:9080/v1/notice/new?username=",{
+        id:this.newNotice.id
+      }).then((res) => {
         if (res.data.code == 200) {
         }
       });
