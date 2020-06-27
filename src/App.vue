@@ -1,13 +1,16 @@
 <template>
   <div id="app">
     <div v-if="newNotice">
-      <el-dialog :title="newNotice.title" :visible.sync="newNotice"
-      :show-close="false"
-      :close-on-click-modal="false"
-      :close-on-press-escape="false"
-       width="90%">
+      <el-dialog
+        :title="newNotice.title"
+        :visible.sync="newNotice"
+        :show-close="false"
+        :close-on-click-modal="false"
+        :close-on-press-escape="false"
+        width="90%"
+      >
         <span>{{ newNotice.content }}</span>
-        <br/>
+        <br />
         <i>{{ newNotice.created_at }}</i>
         <span slot="footer" class="dialog-footer">
           <el-button type="primary" style="width:100%" @click="readNewNotice"
@@ -42,21 +45,23 @@ export default {
       let that = this;
       setInterval(() => {
         let username = window.localStorage.getItem("username");
-        let that2 = that
+        let that2 = that;
         axios
           .get("http://127.0.0.1:9080/v1/notice/new?username=" + username)
           .then((res) => {
-            that.newNotice=res.data
+            that.newNotice = res.data;
           });
       }, 5000);
     },
     readNewNotice() {
-      axios.post("http://127.0.0.1:9080/v1/notice/new?username=",{
-        id:this.newNotice.id
-      }).then((res) => {
-        if (res.data.code == 200) {
-        }
-      });
+      axios
+        .post("http://127.0.0.1:9080/v1/notice/new?username=" + username, {
+          id: this.newNotice.id,
+        })
+        .then((res) => {
+          if (res.data.code == 200) {
+          }
+        });
     },
     loginRefresh() {
       let that = this;
@@ -131,7 +136,7 @@ body {
     }
   }
 }
-.el-dialog__body{
-      padding: 0 20px;
+.el-dialog__body {
+  padding: 0 20px;
 }
 </style>
