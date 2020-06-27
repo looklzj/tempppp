@@ -1,18 +1,22 @@
 <template>
   <div id="app">
     <div v-if="newNotice">
-      <el-dialog :title="newNotice.title" :visible.sync="newNotice" width="90%">
+      <el-dialog :title="newNotice.title" :visible.sync="newNotice"
+      :show-close="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+       width="90%">
         <span>{{ newNotice.content }}</span>
+        <br/>
         <i>{{ newNotice.created_at }}</i>
         <span slot="footer" class="dialog-footer">
-          <el-button type="primary" @click="dialogVisible = false"
+          <el-button type="primary" style="width:100%" @click="dialogVisible = false"
             >确 定</el-button
           >
         </span>
       </el-dialog>
     </div>
     <router-view />
-    {{newNotice}}
     <tab />
   </div>
 </template>
@@ -42,8 +46,7 @@ export default {
         axios
           .get("http://127.0.0.1:9080/v1/notice/new?username=" + username)
           .then((res) => {
-            that.newNotice=res.data.data
-            console.log(that2.newNotice)
+            that.newNotice=res.data
           });
       }, 5000);
     },
@@ -125,5 +128,8 @@ body {
       color: #42b983;
     }
   }
+}
+.el-dialog__body{
+      padding: 0 20px;
 }
 </style>
