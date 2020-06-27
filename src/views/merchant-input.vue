@@ -186,7 +186,8 @@ export default {
         operation_state: "",
         merchant_level: "",
         merchant_addr: "",
-        init_comment: ""
+        init_comment: "",
+        username: window.localStorage.getItem("username"),
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]

@@ -1,15 +1,33 @@
 <template>
   <div id="app">
+    <div v-if="newNotice">
+      <el-dialog :title="newNotice.title" :visible.sync="newNotice" width="90%">
+        <span>{{ newNotice.content }}</span>
+        <i>{{ newNotice.created_at }}</i>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="dialogVisible = false"
+            >确 定</el-button
+          >
+        </span>
+      </el-dialog>
+    </div>
     <router-view />
+    {{newNotice}}
     <tab />
   </div>
 </template>
 <script>
 import Tab from "./components/tab";
+
 import axios from "axios";
 export default {
   components: {
     Tab,
+  },
+  data() {
+    return {
+      newNotice: null,
+    };
   },
   mounted() {
     this.loginRefresh();
@@ -17,14 +35,17 @@ export default {
   },
   methods: {
     getNewNotice() {
+      let that = this;
       setInterval(() => {
-        axios.get("http://127.0.0.1:9080/v1/notice/new").then((res) => {
-          if (res.data.code == 200) {
-            console.log(res.data.data);
-            this.list = res.data.data;
-          }
-        });
-      },5000);
+        let username = window.localStorage.getItem("username");
+        let that2 = that
+        axios
+          .get("http://127.0.0.1:9080/v1/notice/new?username=" + username)
+          .then((res) => {
+            that.newNotice=res.data.data
+            console.log(that2.newNotice)
+          });
+      }, 5000);
     },
     readNewNotice() {
       axios.post("http://127.0.0.1:9080/v1/notice/new").then((res) => {

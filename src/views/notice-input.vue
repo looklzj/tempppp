@@ -40,7 +40,8 @@ export default {
     return {
       ruleForm: {
         title: "",
-        content: ""
+        content: "",
+        username: window.localStorage.getItem("username"),
       }
     };
   },
