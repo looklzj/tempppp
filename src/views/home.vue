@@ -3,7 +3,11 @@
     <div class="top">
       <h1 class="username">{{ username }}</h1>
       <div class="banner">
-        <div class="title">信息录入<span></span></div>
+        <div class="title">信息录入<span class="filter">
+          <span :class="filter[0]">本周</span>
+          <span :class="filter[1]">本月</span>
+          <span :class="filter[2]">全部</span>
+          </span></div>
         <div class="infos">
           <div class="info">
             <div class="num">+{{ countObj.project }}</div>
@@ -225,6 +229,11 @@ export default {
         span {
           font-size: 0.3rem;
           font-weight: 400;
+        }
+        .filter{
+          span{
+            margin:0 10px;
+          }
         }
       }
       .infos {
