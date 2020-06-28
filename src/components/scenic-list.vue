@@ -51,6 +51,8 @@ export default {
         "景区背景公司",
         "景区地址",
         "初次沟通内容",
+        "提交者",
+        "时间",
       ],
     };
   },
@@ -65,7 +67,9 @@ export default {
   methods: {
     getData() {
       axios
-        .get("http://47.97.229.24:9080/v1/scenic/list?username=" + this.username)
+        .get(
+          "http://47.97.229.24:9080/v1/scenic/list?username=" + this.username
+        )
         .then((res) => {
           if (res.data.code == 200) {
             this.list = res.data.data;
