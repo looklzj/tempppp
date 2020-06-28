@@ -126,13 +126,13 @@ export default {
         });
     },
     getLogData() {
-      axios.get("http://127.0.0.1:9080/v1/log/list").then((res) => {
+      axios.get("http://47.111.181.52:9080/v1/log/list").then((res) => {
         this.logs = res.data.data;
       });
     },
     getCount() {
       let that = this;
-      axios.get("http://127.0.0.1:9080/v1/count").then((res) => {
+      axios.get("http://47.111.181.52:9080/v1/count").then((res) => {
         this.countObj = res.data.data;
         that.filter = ["", "", "active"];
       });
@@ -142,7 +142,7 @@ export default {
       let that = this;
       axios
         .get(
-          "http://127.0.0.1:9080/v1/count?start=" +
+          "http://47.111.181.52:9080/v1/count?start=" +
             getWeekStartDate() +
             "&end=" +
             getWeekEndDate()
@@ -156,7 +156,7 @@ export default {
       let that = this;
       axios
         .get(
-          "http://127.0.0.1:9080/v1/count?start=" +
+          "http://47.111.181.52:9080/v1/count?start=" +
             getMonthStartDate() +
             "&end=" +
             getMonthEndDate()

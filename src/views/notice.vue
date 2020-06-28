@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     getData() {
-      axios.get("http://127.0.0.1:9080/v1/notice/list").then(res => {
+      axios.get("http://47.111.181.52:9080/v1/notice/list").then(res => {
         if (res.data.code == 200) {
           this.list = res.data.data;
         }
