@@ -223,7 +223,7 @@ export default {
         this.bottomBtn="立即修改"
         axios
           .get(
-            "http://47.111.181.52:9080/v1/merchant?id=" + this.$route.query.id
+            "http://47.97.229.24:9080/v1/merchant?id=" + this.$route.query.id
           )
           .then(res => {
             this.ruleForm = res.data;
@@ -236,7 +236,7 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://47.111.181.52:9080/v1/merchant?user=" + this.user,
+              "http://47.97.229.24:9080/v1/merchant?user=" + this.user,
               this.ruleForm
             )
             .then(res => {

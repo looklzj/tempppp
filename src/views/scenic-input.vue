@@ -247,7 +247,8 @@ export default {
         contact_wechat: "",
         scenic_company: "",
         scenic_addr: "",
-        init_comment: ""
+        init_comment: "",
+        username: window.localStorage.getItem("username"),
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
@@ -283,7 +284,7 @@ export default {
       if (this.$route.query.id) {
         this.bottomBtn="立即修改"
         axios
-          .get("http://47.111.181.52:9080/v1/scenic?id=" + this.$route.query.id)
+          .get("http://47.97.229.24:9080/v1/scenic?id=" + this.$route.query.id)
           .then(res => {
             this.ruleForm = res.data;
           });
