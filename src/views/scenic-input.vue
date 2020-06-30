@@ -209,11 +209,58 @@
       </el-form-item>
 
       <el-button
-        style="background:#00BF8B;width:80%;margin:0 auto;color:#fff"
+        style="background:#00BF8B;width:68%;margin:0 auto;color:#fff;float:right;"
         @click="submitForm('ruleForm')"
-      >{{bottomBtn}}</el-button>
-
+      >{{ bottomBtn }}</el-button>
+      <el-button
+        v-if="ruleForm.id!=0"
+        @click="dialogVisible = true"
+        style="background:#00BF8B;width:30%;margin:0 auto;color:#fff;float:left;"
+      >添加标签</el-button>
     </el-form>
+        <el-dialog
+      title="添加标签"
+      :show-close="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :visible.sync="dialogVisible"
+      width="100%"
+    >
+      <el-form
+        :model="ruleForm2"
+        :label-position="'left'"
+        ref="ruleForm2"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <el-form-item
+          label="标题"
+          prop="title"
+        >
+          <el-input v-model="ruleForm2.title"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="内容"
+          prop="content"
+        >
+          <el-input
+            type="textarea"
+            :rows="5"
+            v-model="ruleForm2.content"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button
+          type="primary"
+          @click="addTag('ruleForm2')"
+        >确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -222,6 +269,8 @@ import axios from "axios";
 export default {
   data() {
     return {
+            dialogVisible: false,
+
       bottomBtn:"立即创建",
       user: "",
       ruleForm: {
@@ -252,6 +301,11 @@ export default {
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
+      },
+            ruleForm2: {
+        id: 0,
+        title: "",
+        content: ""
       },
       property_types: [
         "室内建筑",
@@ -321,6 +375,38 @@ export default {
           return false;
         }
       });
+    },
+        addTag(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.ruleForm2.id = this.ruleForm.id;
+          axios
+            .post(
+              "http://47.97.229.24:9080/v1/scenic/tag?user=" + this.user,
+              this.ruleForm2
+            )
+            .then(res => {
+              if (res.data.code == 400) {
+                Toast({
+                  message: res.data.data,
+                  position: "middle",
+                  duration: 5000
+                });
+              }
+              if (res.data.code == 200) {
+                Toast({
+                  message: "操作成功",
+                  position: "middle",
+                  duration: 5000
+                });
+                this.$router.push("/home");
+              }
+            });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };
@@ -362,6 +448,12 @@ export default {
   }
   /deep/.el-form-item__label {
     color: #00bf8b;
+  }
+    /deep/.el-dialog__footer {
+    text-align: center;
+  }
+  /deep/.el-button--primary {
+    background: #00bf8b;
   }
 }
 </style>

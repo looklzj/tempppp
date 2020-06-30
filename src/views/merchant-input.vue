@@ -1,8 +1,8 @@
 <template>
   <div class="project-input">
-    <div class="header"><span @click="$router.go(-1)"><i
-          class="el-icon-arrow-left"
-        ></i></span><span>商户</span></div>
+    <div class="header">
+      <span @click="$router.go(-1)"><i class="el-icon-arrow-left"></i></span><span>商户</span>
+    </div>
 
     <el-form
       :model="ruleForm"
@@ -49,7 +49,7 @@
       >
         <el-select v-model="ruleForm.cooperation_mode">
           <el-option
-            v-for="(item,index) in cooperation_modes"
+            v-for="(item, index) in cooperation_modes"
             :key="index"
             :label="item"
             :value="item"
@@ -70,7 +70,7 @@
       >
         <el-select v-model="ruleForm.invest_intent">
           <el-option
-            v-for="(item,index) in invest_intents"
+            v-for="(item, index) in invest_intents"
             :key="index"
             :label="item"
             :value="item"
@@ -84,7 +84,7 @@
       >
         <el-select v-model="ruleForm.product_type">
           <el-option
-            v-for="(item,index) in product_types"
+            v-for="(item, index) in product_types"
             :key="index"
             :label="item"
             :value="item"
@@ -115,7 +115,7 @@
       >
         <el-select v-model="ruleForm.operation_state">
           <el-option
-            v-for="(item,index) in operation_states"
+            v-for="(item, index) in operation_states"
             :key="index"
             :label="item"
             :value="item"
@@ -129,7 +129,7 @@
       >
         <el-select v-model="ruleForm.merchant_level">
           <el-option
-            v-for="(item,index) in merchant_levels"
+            v-for="(item, index) in merchant_levels"
             :key="index"
             :label="item"
             :value="item"
@@ -156,10 +156,58 @@
       </el-form-item>
 
       <el-button
-        style="background:#00BF8B;width:80%;margin:0 auto;color:#fff"
+        style="background:#00BF8B;width:68%;margin:0 auto;color:#fff;float:right;"
         @click="submitForm('ruleForm')"
-      >{{bottomBtn}}</el-button>
+      >{{ bottomBtn }}</el-button>
+      <el-button
+        v-if="ruleForm.id!=0"
+        @click="dialogVisible = true"
+        style="background:#00BF8B;width:30%;margin:0 auto;color:#fff;float:left;"
+      >添加标签</el-button>
     </el-form>
+    <el-dialog
+      title="添加标签"
+      :show-close="false"
+      :close-on-click-modal="false"
+      :close-on-press-escape="false"
+      :visible.sync="dialogVisible"
+      width="100%"
+    >
+      <el-form
+        :model="ruleForm2"
+        :label-position="'left'"
+        ref="ruleForm2"
+        label-width="100px"
+        class="demo-ruleForm"
+      >
+        <el-form-item
+          label="标题"
+          prop="title"
+        >
+          <el-input v-model="ruleForm2.title"></el-input>
+        </el-form-item>
+        <el-form-item
+          label="内容"
+          prop="content"
+        >
+          <el-input
+            type="textarea"
+            :rows="5"
+            v-model="ruleForm2.content"
+          ></el-input>
+        </el-form-item>
+      </el-form>
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button
+          type="primary"
+          @click="addTag('ruleForm2')"
+        >确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -168,7 +216,8 @@ import axios from "axios";
 export default {
   data() {
     return {
-      bottomBtn:"立即创建",
+      dialogVisible: false,
+      bottomBtn: "立即创建",
       user: "",
       ruleForm: {
         id: 0,
@@ -187,7 +236,12 @@ export default {
         merchant_level: "",
         merchant_addr: "",
         init_comment: "",
-        username: window.localStorage.getItem("username"),
+        username: window.localStorage.getItem("username")
+      },
+      ruleForm2: {
+        id: 0,
+        title: "",
+        content: ""
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
@@ -214,13 +268,13 @@ export default {
     };
   },
   mounted() {
-    this.user = window.localStorage.getItem("username")
+    this.user = window.localStorage.getItem("username");
     this.getData();
   },
   methods: {
     getData() {
       if (this.$route.query.id) {
-        this.bottomBtn="立即修改"
+        this.bottomBtn = "立即修改";
         axios
           .get(
             "http://47.97.229.24:9080/v1/merchant?id=" + this.$route.query.id
@@ -253,7 +307,39 @@ export default {
                   position: "middle",
                   duration: 5000
                 });
-                 this.$router.push("/home");
+                this.$router.push("/home");
+              }
+            });
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
+    },
+    addTag(formName) {
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.ruleForm2.id = this.ruleForm.id;
+          axios
+            .post(
+              "http://47.97.229.24:9080/v1/merchant/tag?user=" + this.user,
+              this.ruleForm2
+            )
+            .then(res => {
+              if (res.data.code == 400) {
+                Toast({
+                  message: res.data.data,
+                  position: "middle",
+                  duration: 5000
+                });
+              }
+              if (res.data.code == 200) {
+                Toast({
+                  message: "操作成功",
+                  position: "middle",
+                  duration: 5000
+                });
+                this.$router.push("/home");
               }
             });
         } else {
@@ -302,6 +388,12 @@ export default {
   }
   /deep/.el-form-item__label {
     color: #00bf8b;
+  }
+  /deep/.el-dialog__footer {
+    text-align: center;
+  }
+  /deep/.el-button--primary {
+    background: #00bf8b;
   }
 }
 </style>
