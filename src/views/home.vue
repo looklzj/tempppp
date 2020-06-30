@@ -135,7 +135,7 @@ export default {
     },
     getCount() {
       let that = this;
-      axios.get("http://47.97.229.24:9080/v1/count").then((res) => {
+      axios.get("http://47.97.229.24:9080/v1/count?username="+this.username).then((res) => {
         this.countObj = res.data.data;
         that.filter = ["", "", "active"];
       });
@@ -148,7 +148,9 @@ export default {
           "http://47.97.229.24:9080/v1/count?start=" +
             getWeekStartDate() +
             "&end=" +
-            getWeekEndDate()
+            getWeekEndDate() +
+            "&username="+
+            this.username
         )
         .then((res) => {
           this.countObj = res.data.data;
@@ -162,7 +164,9 @@ export default {
           "http://47.97.229.24:9080/v1/count?start=" +
             getMonthStartDate() +
             "&end=" +
-            getMonthEndDate()
+            getMonthEndDate()+
+            "&username="+
+            this.username
         )
         .then((res) => {
           this.countObj = res.data.data;
