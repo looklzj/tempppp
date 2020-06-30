@@ -91,8 +91,10 @@ export default {
     flex-direction: column;
     > li {
       &:nth-child(1) {
-        color: #909399;
-        font-weight: 500;
+        > ul > li {
+          color: #00bf8b;
+          font-weight: 500;
+        }
       }
       > ul {
         display: flex;

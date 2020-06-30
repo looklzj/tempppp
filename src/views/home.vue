@@ -34,6 +34,7 @@
             @click="$router.push('/project-input')"
             alt=""
           />
+          <span>项目</span>
         </div>
         <div class="nav-item">
           <img
@@ -41,6 +42,7 @@
             @click="$router.push('/scenic-input')"
             alt=""
           />
+          <span>景区</span>
         </div>
         <div class="nav-item">
           <img
@@ -48,6 +50,7 @@
             @click="$router.push('/merchant-input')"
             alt=""
           />
+          <span>商户</span>
         </div>
       </div>
     </div>
@@ -311,8 +314,13 @@ export default {
       display: flex;
       justify-content: space-around;
       .nav-item {
+        font-size:14px;
         img {
+          display:block;
           width: 1.5rem;
+        }
+        span{
+          display:block;
         }
       }
     }
