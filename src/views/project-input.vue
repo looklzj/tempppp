@@ -404,15 +404,15 @@ export default {
     }
   }
   .tags {
-    margin:40px 0;
+    margin: 40px 0;
     display: flex;
     flex-direction: row;
-        overflow: scroll;
+    overflow: scroll;
     .item {
       font-size: 14px;
       padding: 20px;
       border: 1px solid #ccc;
-          min-width: 180px;
+      min-width: 180px;
       span {
         display: block;
         &:nth-child(1) {
@@ -422,8 +422,8 @@ export default {
         &:nth-child(2) {
         }
         &:nth-child(3) {
-          margin-top:10px;
-          color:#00bf8b;
+          margin-top: 10px;
+          color: #00bf8b;
         }
       }
     }

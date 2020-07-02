@@ -155,6 +155,18 @@
         ></el-input>
       </el-form-item>
 
+      <div class="tags">
+        <div
+          class="item"
+          v-for="(item,index) in tags"
+          :key="index"
+        >
+          <span>{{item.title}}</span>
+          <span>{{item.comment}}</span>
+          <span>{{item.created_at.split("+")[0]}}</span>
+        </div>
+      </div>
+
       <el-button
         style="background:#00BF8B;width:68%;margin:0 auto;color:#fff;float:right;"
         @click="submitForm('ruleForm')"
@@ -239,9 +251,8 @@ export default {
         username: window.localStorage.getItem("username")
       },
       ruleForm2: {
-        id: 0,
         title: "",
-        content: ""
+        comment: ""
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
@@ -319,7 +330,8 @@ export default {
     addTag(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.ruleForm2.id = this.ruleForm.id;
+          this.ruleForm2.record_id = this.ruleForm.id;
+          this.ruleForm2.typ = 3;
           axios
             .post(
               "http://47.97.229.24:9080/v1/tag?user=" + this.user,
