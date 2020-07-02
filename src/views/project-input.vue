@@ -420,6 +420,7 @@ export default {
           color: #fff;
         }
         &:nth-child(2) {
+          margin-top:5px;
         }
         &:nth-child(3) {
           margin-top: 10px;

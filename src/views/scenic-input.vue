@@ -253,12 +253,12 @@
         </el-form-item>
         <el-form-item
           label="内容"
-          prop="content"
+          prop="comment"
         >
           <el-input
             type="textarea"
             :rows="5"
-            v-model="ruleForm2.content"
+            v-model="ruleForm2.comment"
           ></el-input>
         </el-form-item>
       </el-form>
@@ -351,6 +351,16 @@ export default {
           .get("http://47.97.229.24:9080/v1/scenic?id=" + this.$route.query.id)
           .then(res => {
             this.ruleForm = res.data;
+          });
+        axios
+          .get(
+            "http://47.97.229.24:9080/v1/tag?record_id=" +
+              this.$route.query.id +
+              "&typ=2"
+          )
+          .then(res => {
+            this.tags = res.data.data;
+            console.log(this.tags);
           });
       }
     },
@@ -469,6 +479,7 @@ export default {
           color: #fff;
         }
         &:nth-child(2) {
+          margin-top: 5px;
         }
         &:nth-child(3) {
           margin-top: 10px;
