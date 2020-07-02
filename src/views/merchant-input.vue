@@ -381,6 +381,31 @@ export default {
       }
     }
   }
+  .tags {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    .item {
+      font-size: 14px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      min-width: 180px;
+      span {
+        display: block;
+        &:nth-child(1) {
+          background: #00bf8b;
+          color: #fff;
+        }
+        &:nth-child(2) {
+        }
+        &:nth-child(3) {
+          margin-top: 10px;
+          color: #00bf8b;
+        }
+      }
+    }
+  }
   /deep/ .el-form-item__content {
     > div {
       width: 100%;

@@ -295,7 +295,7 @@ export default {
           });
         axios
           .get(
-            "http://127.0.0.1:9080/v1/tag?record_id=" +
+            "http://47.97.229.24:9080/v1/tag?record_id=" +
               this.$route.query.id +
               "&typ=1"
           )
@@ -344,7 +344,7 @@ export default {
           this.ruleForm2.typ = 1;
           axios
             .post(
-              "http://127.0.0.1:9080/v1/tag?user=" + this.user,
+              "http://47.97.229.24:9080/v1/tag?user=" + this.user,
               this.ruleForm2
             )
             .then(res => {

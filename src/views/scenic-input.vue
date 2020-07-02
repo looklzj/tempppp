@@ -218,7 +218,7 @@
         style="background:#00BF8B;width:30%;margin:0 auto;color:#fff;float:left;"
       >添加标签</el-button>
     </el-form>
-        <el-dialog
+    <el-dialog
       title="添加标签"
       :show-close="false"
       :close-on-click-modal="false"
@@ -269,9 +269,9 @@ import axios from "axios";
 export default {
   data() {
     return {
-            dialogVisible: false,
+      dialogVisible: false,
 
-      bottomBtn:"立即创建",
+      bottomBtn: "立即创建",
       user: "",
       ruleForm: {
         id: 0,
@@ -297,12 +297,12 @@ export default {
         scenic_company: "",
         scenic_addr: "",
         init_comment: "",
-        username: window.localStorage.getItem("username"),
+        username: window.localStorage.getItem("username")
       },
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
       },
-            ruleForm2: {
+      ruleForm2: {
         id: 0,
         title: "",
         content: ""
@@ -336,7 +336,7 @@ export default {
   methods: {
     getData() {
       if (this.$route.query.id) {
-        this.bottomBtn="立即修改"
+        this.bottomBtn = "立即修改";
         axios
           .get("http://47.97.229.24:9080/v1/scenic?id=" + this.$route.query.id)
           .then(res => {
@@ -376,7 +376,7 @@ export default {
         }
       });
     },
-        addTag(formName) {
+    addTag(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
           this.ruleForm2.id = this.ruleForm.id;
@@ -441,6 +441,31 @@ export default {
       }
     }
   }
+  .tags {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: row;
+    overflow: scroll;
+    .item {
+      font-size: 14px;
+      padding: 20px;
+      border: 1px solid #ccc;
+      min-width: 180px;
+      span {
+        display: block;
+        &:nth-child(1) {
+          background: #00bf8b;
+          color: #fff;
+        }
+        &:nth-child(2) {
+        }
+        &:nth-child(3) {
+          margin-top: 10px;
+          color: #00bf8b;
+        }
+      }
+    }
+  }
   /deep/ .el-form-item__content {
     > div {
       width: 100%;
@@ -449,7 +474,7 @@ export default {
   /deep/.el-form-item__label {
     color: #00bf8b;
   }
-    /deep/.el-dialog__footer {
+  /deep/.el-dialog__footer {
     text-align: center;
   }
   /deep/.el-button--primary {
