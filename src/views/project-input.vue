@@ -147,7 +147,7 @@
           v-model="ruleForm.init_comment"
         ></el-input>
       </el-form-item>
-
+<span class="records">跟进记录</span>
       <div class="tags">
         <div
           class="item"
@@ -403,8 +403,13 @@ export default {
       }
     }
   }
+    .records{
+    font-size:14px;
+    color:#00bf8b;
+    margin-top:35px;
+  }
   .tags {
-    margin: 40px 0;
+    margin: 8px 0 35px;
     display: flex;
     flex-direction: row;
     overflow: scroll;
