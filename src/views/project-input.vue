@@ -1,8 +1,7 @@
 <template>
   <div class="project-input">
     <div class="header">
-      <span @click="$router.go(-1)"><i class="el-icon-arrow-left"></i></span
-      ><span>项目</span>
+      <span @click="$router.go(-1)"><i class="el-icon-arrow-left"></i></span><span>项目</span>
     </div>
 
     <el-form
@@ -13,16 +12,28 @@
       label-width="100px"
       class="demo-ruleForm"
     >
-      <el-form-item label="客户名称" prop="customer_name">
+      <el-form-item
+        label="客户名称"
+        prop="customer_name"
+      >
         <el-input v-model="ruleForm.customer_name"></el-input>
       </el-form-item>
-      <el-form-item label="电话号码" prop="customer_phone">
+      <el-form-item
+        label="电话号码"
+        prop="customer_phone"
+      >
         <el-input v-model="ruleForm.customer_phone"></el-input>
       </el-form-item>
-      <el-form-item label="微信号" prop="customer_wechat">
+      <el-form-item
+        label="微信号"
+        prop="customer_wechat"
+      >
         <el-input v-model="ruleForm.customer_wechat"></el-input>
       </el-form-item>
-      <el-form-item label="客户来源" prop="customer_origin">
+      <el-form-item
+        label="客户来源"
+        prop="customer_origin"
+      >
         <el-select v-model="ruleForm.customer_origin">
           <el-option
             v-for="(item, index) in customer_origins"
@@ -32,14 +43,23 @@
           ></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="公司名称" prop="company_name">
+      <el-form-item
+        label="公司名称"
+        prop="company_name"
+      >
         <el-input v-model="ruleForm.company_name"></el-input>
       </el-form-item>
-      <el-form-item label="客户行业" prop="customer_perfession">
+      <el-form-item
+        label="客户行业"
+        prop="customer_perfession"
+      >
         <el-input v-model="ruleForm.customer_perfession"></el-input>
       </el-form-item>
 
-      <el-form-item label="客户类别" prop="customer_type">
+      <el-form-item
+        label="客户类别"
+        prop="customer_type"
+      >
         <el-select v-model="ruleForm.customer_type">
           <el-option
             v-for="(item, index) in customer_type"
@@ -50,7 +70,10 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="项目类型" prop="project_type">
+      <el-form-item
+        label="项目类型"
+        prop="project_type"
+      >
         <el-select v-model="ruleForm.project_type">
           <el-option
             v-for="(item, index) in project_types"
@@ -61,11 +84,17 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="需求产品" prop="need_product">
+      <el-form-item
+        label="需求产品"
+        prop="need_product"
+      >
         <el-input v-model="ruleForm.need_product"></el-input>
       </el-form-item>
 
-      <el-form-item label="项目地址" prop="project_addr">
+      <el-form-item
+        label="项目地址"
+        prop="project_addr"
+      >
         <el-input
           type="textarea"
           :rows="5"
@@ -73,11 +102,17 @@
         ></el-input>
       </el-form-item>
 
-      <el-form-item label="项目名称" prop="project_name">
+      <el-form-item
+        label="项目名称"
+        prop="project_name"
+      >
         <el-input v-model="ruleForm.project_name"></el-input>
       </el-form-item>
 
-      <el-form-item label="项目状况" prop="project_state">
+      <el-form-item
+        label="项目状况"
+        prop="project_state"
+      >
         <el-select v-model="ruleForm.project_state">
           <el-option
             v-for="(item, index) in project_states"
@@ -88,7 +123,10 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="客户等级" prop="customer_level">
+      <el-form-item
+        label="客户等级"
+        prop="customer_level"
+      >
         <el-select v-model="ruleForm.customer_level">
           <el-option
             v-for="(item, index) in customer_levels"
@@ -99,7 +137,10 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="初次沟通内容" prop="init_comment">
+      <el-form-item
+        label="初次沟通内容"
+        prop="init_comment"
+      >
         <el-input
           type="textarea"
           :rows="5"
@@ -117,7 +158,7 @@
         style="background:#00BF8B;width:30%;margin:0 auto;color:#fff;float:left;"
       >添加标签</el-button>
     </el-form>
-      <el-dialog
+    <el-dialog
       title="添加标签"
       :show-close="false"
       :close-on-click-modal="false"
@@ -188,22 +229,21 @@ export default {
         project_state: "",
         customer_level: "",
         init_comment: "",
-        username: window.localStorage.getItem("username"),
+        username: window.localStorage.getItem("username")
       },
-            ruleForm2: {
-        id: 0,
+      ruleForm2: {
         title: "",
         content: ""
       },
       rules: {
-        name: [{ required: true, message: "请填写完整", trigger: "blur" }],
+        name: [{ required: true, message: "请填写完整", trigger: "blur" }]
       },
       customer_origins: [
         "朋友介绍",
         "网络推广",
         "客户推荐",
         "渠道代理",
-        "自行开发",
+        "自行开发"
       ],
       project_types: ["文化旅游", "视觉工程", "数字展馆", "舞美娱乐", "其它"],
       customer_type: [
@@ -214,7 +254,7 @@ export default {
         "投资方",
         "策划公司",
         "中间人",
-        "运营公司",
+        "运营公司"
       ],
       project_states: [
         "项目选址",
@@ -222,9 +262,9 @@ export default {
         "项目报批",
         "造价报价",
         "合同审核",
-        "签约履约",
+        "签约履约"
       ],
-      customer_levels: ["A", "B", "C", "D"],
+      customer_levels: ["A", "B", "C", "D"]
     };
   },
   mounted() {
@@ -236,36 +276,34 @@ export default {
       if (this.$route.query.id) {
         this.bottomBtn = "立即修改";
         axios
-          .get(
-            "http://47.97.229.24:9080/v1/project?id=" + this.$route.query.id
-          )
-          .then((res) => {
+          .get("http://47.97.229.24:9080/v1/project?id=" + this.$route.query.id)
+          .then(res => {
             this.ruleForm = res.data;
           });
       }
     },
     submitForm(formName) {
       let that = this;
-      this.$refs[formName].validate((valid) => {
+      this.$refs[formName].validate(valid => {
         if (valid) {
           axios
             .post(
               "http://47.97.229.24:9080/v1/project?user=" + this.user,
               this.ruleForm
             )
-            .then((res) => {
+            .then(res => {
               if (res.data.code == 400) {
                 Toast({
                   message: res.data.data,
                   position: "middle",
-                  duration: 5000,
+                  duration: 5000
                 });
               }
               if (res.data.code == 200) {
                 Toast({
                   message: "操作成功",
                   position: "middle",
-                  duration: 5000,
+                  duration: 5000
                 });
                 this.$router.push("/home");
               }
@@ -276,10 +314,11 @@ export default {
         }
       });
     },
-        addTag(formName) {
+    addTag(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.ruleForm2.id = this.ruleForm.id;
+          this.ruleForm2.record_id = this.ruleForm.id;
+          this.ruleForm2.typ = 1;
           axios
             .post(
               "http://47.97.229.24:9080/v1/tag?user=" + this.user,
@@ -308,7 +347,7 @@ export default {
         }
       });
     }
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -349,7 +388,7 @@ export default {
   /deep/.el-form-item__label {
     color: #00bf8b;
   }
-    /deep/.el-dialog__footer {
+  /deep/.el-dialog__footer {
     text-align: center;
   }
   /deep/.el-button--primary {
