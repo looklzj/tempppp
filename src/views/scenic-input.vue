@@ -382,7 +382,7 @@ export default {
           this.ruleForm2.id = this.ruleForm.id;
           axios
             .post(
-              "http://47.97.229.24:9080/v1/scenic/tag?user=" + this.user,
+              "http://47.97.229.24:9080/v1/tag?user=" + this.user,
               this.ruleForm2
             )
             .then(res => {
