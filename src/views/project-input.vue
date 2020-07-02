@@ -148,6 +148,18 @@
         ></el-input>
       </el-form-item>
 
+      <div class="tags">
+        <div
+          class="item"
+          v-for="(item,index) in tags"
+          :key="index"
+        >
+          <span>{{item.title}}</span>
+          <span>{{item.comment}}</span>
+          <span>{{item.created_at.split("+")[0]}}</span>
+        </div>
+      </div>
+
       <el-button
         style="background:#00BF8B;width:68%;margin:0 auto;color:#fff;float:right;"
         @click="submitForm('ruleForm')"
@@ -181,12 +193,12 @@
         </el-form-item>
         <el-form-item
           label="内容"
-          prop="content"
+          prop="comment"
         >
           <el-input
             type="textarea"
             :rows="5"
-            v-model="ruleForm2.content"
+            v-model="ruleForm2.comment"
           ></el-input>
         </el-form-item>
       </el-form>
@@ -233,8 +245,9 @@ export default {
       },
       ruleForm2: {
         title: "",
-        content: ""
+        comment: ""
       },
+      tags: [],
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
       },
@@ -280,6 +293,16 @@ export default {
           .then(res => {
             this.ruleForm = res.data;
           });
+        axios
+          .get(
+            "http://127.0.0.1:9080/v1/tag?record_id=" +
+              this.$route.query.id +
+              "&typ=1"
+          )
+          .then(res => {
+            this.tags = res.data.data;
+            console.log(this.tags);
+          });
       }
     },
     submitForm(formName) {
@@ -321,7 +344,7 @@ export default {
           this.ruleForm2.typ = 1;
           axios
             .post(
-              "http://47.97.229.24:9080/v1/tag?user=" + this.user,
+              "http://127.0.0.1:9080/v1/tag?user=" + this.user,
               this.ruleForm2
             )
             .then(res => {
@@ -377,6 +400,31 @@ export default {
         margin-left: -24px;
         margin-top: 9px;
         display: inline-block;
+      }
+    }
+  }
+  .tags {
+    margin:40px 0;
+    display: flex;
+    flex-direction: row;
+        overflow: scroll;
+    .item {
+      font-size: 14px;
+      padding: 20px;
+      border: 1px solid #ccc;
+          min-width: 180px;
+      span {
+        display: block;
+        &:nth-child(1) {
+          background: #00bf8b;
+          color: #fff;
+        }
+        &:nth-child(2) {
+        }
+        &:nth-child(3) {
+          margin-top:10px;
+          color:#00bf8b;
+        }
       }
     }
   }
