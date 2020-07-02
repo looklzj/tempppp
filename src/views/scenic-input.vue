@@ -317,6 +317,7 @@ export default {
         title: "",
         comment: ""
       },
+      tags: [],
       property_types: [
         "室内建筑",
         "商业街区",

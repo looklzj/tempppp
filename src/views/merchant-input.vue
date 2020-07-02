@@ -254,6 +254,7 @@ export default {
         title: "",
         comment: ""
       },
+      tags: [],
       rules: {
         name: [{ required: true, message: "请填写完整", trigger: "blur" }]
       },
