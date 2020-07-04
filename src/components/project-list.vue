@@ -34,15 +34,20 @@
 
       </el-table-column>
       <el-table-column
-        prop="name"
-        label="姓名"
+        prop="company_name"
+        label="公司名称"
+        width="180"
+      >
+      </el-table-column>
+      <el-table-column
+        prop="company_name"
+        label="客户行业"
         width="180"
       >
       </el-table-column>
       <el-table-column
         prop="address"
         label="地址"
-        :formatter="formatter"
       >
       </el-table-column>
       <el-table-column
@@ -53,7 +58,11 @@
         :filter-method="filterTag"
         filter-placement="bottom-end"
       >
-
+      </el-table-column>
+      <el-table-column
+        prop="company_name"
+        label="公司名称"
+      >
       </el-table-column>
     </el-table>
   </div>
@@ -103,9 +112,9 @@ export default {
   },
   methods: {
     filterTag(value, row) {
-      conosle.log(value);
+      console.log(value);
       console.log(row);
-      return row.tag === value;
+      return row.customer_origin === value;
     },
     getData() {
       axios
