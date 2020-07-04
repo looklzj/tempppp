@@ -1,24 +1,53 @@
 <template>
   <div class="list">
-    <ul>
-      <li>
-        <ul>
-          <li></li>
-          <li v-for="(item, index) in titles" :key="index">{{ item }}</li>
-        </ul>
-      </li>
-      <li v-for="(item, index) in list" :key="index">
-        <ul>
-          <li
-            v-for="(v, k, i) in item"
-            :key="i"
-            @click="$router.push('/project-input?id=' + item.id)"
-          >
-            {{ v }}
-          </li>
-        </ul>
-      </li>
-    </ul>
+   <el-table
+    ref="filterTable"
+    :data="list"
+    style="width: 100%">
+    <el-table-column
+      prop="customer_name"
+      label="客户名称"
+      width="180">
+    </el-table-column>
+       <el-table-column
+      prop="customer_phone"
+      label="电话号码"
+      width="180">
+    </el-table-column>
+       <el-table-column
+      prop="customer_wechat"
+      label="微信号"
+      width="180">
+    </el-table-column>
+          <el-table-column
+      prop="tag"
+      label="客户来源"
+      width="100"
+      :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
+      :filter-method="filterTag"
+      filter-placement="bottom-end">
+
+    </el-table-column>
+       <el-table-column
+      prop="name"
+      label="姓名"
+      width="180">
+    </el-table-column>
+    <el-table-column
+      prop="address"
+      label="地址"
+      :formatter="formatter">
+    </el-table-column>
+    <el-table-column
+      prop="tag"
+      label="标签"
+      width="100"
+      :filters="[{ text: '家', value: '家' }, { text: '公司', value: '公司' }]"
+      :filter-method="filterTag"
+      filter-placement="bottom-end">
+
+    </el-table-column>
+  </el-table>
   </div>
 </template>
 <script>
