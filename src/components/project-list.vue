@@ -228,45 +228,6 @@ export default {
 <style lang="scss" scoped>
 .list {
   overflow: scroll;
-  > ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    font-size: 0.35rem;
-    display: flex;
-    flex-direction: column;
-    > li {
-      &:nth-child(1) {
-        > ul > li {
-          color: #00bf8b;
-          font-weight: 500;
-        }
-      }
-      > ul {
-        display: flex;
-        flex-direction: row;
-        list-style: none;
-        padding: 0;
-        margin: 2px;
-        > li {
-          word-break: keep-all;
-          white-space: nowrap;
-          flex: 0 0 3rem;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          color: #606266;
-          pointer-events: none;
-          text-align: left;
-          &:nth-child(1) {
-            display: none;
-          }
-          &:nth-child(2) {
-            pointer-events: unset;
-          }
-        }
-      }
-    }
-  }
   /deep/ .el-table .cell {
     text-overflow: ellipsis;
     white-space: nowrap;
