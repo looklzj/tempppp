@@ -52,7 +52,7 @@
       <el-table-column
         prop="rent_scale"
         label="租金分成比"
-        width="180"
+        width="160"
       >
       </el-table-column>
       <el-table-column
@@ -130,7 +130,7 @@
       <el-table-column
         prop="created_at"
         label="时间"
-        width="180"
+        width="110"
       >
       </el-table-column>
     </el-table>
