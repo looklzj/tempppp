@@ -207,9 +207,11 @@ export default {
     this.getData();
   },
   methods: {
-    filterTag(value, row) {
+    filterTag(value, row, column) {
+      console.log(value);
       console.log(row);
-      return row.customer_origin === value;
+      console.log(column);
+      return row[column.property] === value;
     },
     getData() {
       axios
