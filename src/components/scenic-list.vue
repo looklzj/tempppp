@@ -11,8 +11,8 @@
         width="180"
       >
         <template slot-scope="scope">
-          <router-link :to="'project-input?id=' + scope.row.id">{{
-            scope.row.customer_name
+          <router-link :to="'scenic-input?id=' + scope.row.id">{{
+            scope.row.scenic_name
           }}</router-link>
         </template>
       </el-table-column>
