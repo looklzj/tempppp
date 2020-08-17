@@ -41,7 +41,7 @@ export default {
     loginHandler() {
       let that = this;
       axios
-        .post("http://47.97.229.24:9080/v1/user/login", {
+        .post("http://47.108.128.162:9080/v1/user/login", {
           username: this.username,
           password: this.password
         })

@@ -216,7 +216,7 @@ export default {
     getData() {
       axios
         .get(
-          "http://47.97.229.24:9080/v1/project/list?username=" + this.username
+          "http://47.108.128.162:9080/v1/project/list?username=" + this.username
         )
         .then(res => {
           if (res.data.code == 200) {

@@ -289,14 +289,14 @@ export default {
         this.bottomBtn = "立即修改";
         axios
           .get(
-            "http://47.97.229.24:9080/v1/merchant?id=" + this.$route.query.id
+            "http://47.108.128.162:9080/v1/merchant?id=" + this.$route.query.id
           )
           .then(res => {
             this.ruleForm = res.data;
           });
         axios
           .get(
-            "http://47.97.229.24:9080/v1/tag?record_id=" +
+            "http://47.108.128.162:9080/v1/tag?record_id=" +
               this.$route.query.id +
               "&typ=3"
           )
@@ -312,7 +312,7 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://47.97.229.24:9080/v1/merchant?user=" + this.user,
+              "http://47.108.128.162:9080/v1/merchant?user=" + this.user,
               this.ruleForm
             )
             .then(res => {
@@ -345,7 +345,7 @@ export default {
           this.ruleForm2.typ = 3;
           axios
             .post(
-              "http://47.97.229.24:9080/v1/tag?user=" + this.user,
+              "http://47.108.128.162:9080/v1/tag?user=" + this.user,
               this.ruleForm2
             )
             .then(res => {

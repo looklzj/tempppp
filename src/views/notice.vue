@@ -51,7 +51,7 @@ export default {
   },
   methods: {
     getData() {
-      axios.get("http://47.97.229.24:9080/v1/notice/list").then(res => {
+      axios.get("http://47.108.128.162:9080/v1/notice/list").then(res => {
         if (res.data.code == 200) {
           this.list = res.data.data;
         }
@@ -60,7 +60,7 @@ export default {
     deleteNotice(id) {
       let that = this;
       axios
-        .get("http://47.97.229.24:9080/v1/notice/delete?id=" + id)
+        .get("http://47.108.128.162:9080/v1/notice/delete?id=" + id)
         .then(res => {
           if (res.data.code == 200) {
             Toast({
