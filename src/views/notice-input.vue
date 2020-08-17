@@ -45,7 +45,7 @@ export default {
         if (valid) {
           axios
             .post(
-              "http://47.108.128.162:9080/v1/notice?user=" + this.ruleForm.username,
+              "https://static.rechengparty.com:9080/v1/notice?user=" + this.ruleForm.username,
               this.ruleForm
             )
             .then((res) => {

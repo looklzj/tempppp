@@ -123,19 +123,19 @@ export default {
     getUserData() {
       let username = window.localStorage.getItem("username");
       axios
-        .get("http://47.108.128.162:9080/v1/user/get?username=" + username)
+        .get("https://static.rechengparty.com:9080/v1/user/get?username=" + username)
         .then((res) => {
           this.username = res.data.username;
         });
     },
     getLogData() {
-      axios.get("http://47.108.128.162:9080/v1/log/list").then((res) => {
+      axios.get("https://static.rechengparty.com:9080/v1/log/list").then((res) => {
         this.logs = res.data.data;
       });
     },
     getCount() {
       let that = this;
-      axios.get("http://47.108.128.162:9080/v1/count?username="+this.username).then((res) => {
+      axios.get("https://static.rechengparty.com:9080/v1/count?username="+this.username).then((res) => {
         this.countObj = res.data.data;
         that.filter = ["", "", "active"];
       });
@@ -145,7 +145,7 @@ export default {
       let that = this;
       axios
         .get(
-          "http://47.108.128.162:9080/v1/count?start=" +
+          "https://static.rechengparty.com:9080/v1/count?start=" +
             getWeekStartDate() +
             "&end=" +
             getWeekEndDate() +
@@ -161,7 +161,7 @@ export default {
       let that = this;
       axios
         .get(
-          "http://47.108.128.162:9080/v1/count?start=" +
+          "https://static.rechengparty.com:9080/v1/count?start=" +
             getMonthStartDate() +
             "&end=" +
             getMonthEndDate()+
